@@ -1,7 +1,7 @@
 package com.zerobase.reservation.controller;
 
 import com.zerobase.reservation.model.form.SignUpForm;
-import com.zerobase.reservation.repository.CustomerRepository;
+import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,11 @@ public class CustomerController {
     @PostMapping("/signup")// 회원가입
     public ResponseEntity customerSignUp(SignUpForm form){
         customerService.signUp(form);
-
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }
 
     @PostMapping("/signin")//  로그인
-    public ResponseEntity customerSignIn(){
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> customerSignIn(SignInForm form){
+        return ResponseEntity.ok(customerService.signIn(form));
     }
 }
