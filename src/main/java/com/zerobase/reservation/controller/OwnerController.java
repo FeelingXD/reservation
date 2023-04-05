@@ -1,7 +1,7 @@
 package com.zerobase.reservation.controller;
 
 import com.zerobase.reservation.model.entity.constant.UserType;
-import com.zerobase.reservation.service.OwnerService;
+import com.zerobase.reservation.service.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/owner")
 public class OwnerController {
-    private final OwnerService ownerService;
+    private final ManagerService managerService;
     private static UserType TYPE=UserType.CUSTOMER;
 }

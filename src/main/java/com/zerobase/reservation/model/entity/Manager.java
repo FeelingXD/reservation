@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Owner {
+public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,8 +23,8 @@ public class Owner {
     @Column(unique = true)
     private String phone;
 
-    public static Owner from(SignUpForm form) {
-        return Owner.builder()
+    public static Manager from(SignUpForm form) {
+        return Manager.builder()
                 .email(form.getEmail())
                 .password(form.getPassword())
                 .phone(form.getPhone())
