@@ -18,17 +18,17 @@ import java.util.Optional;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final JwtAuthenticationProvider provider;
+    private static final UserType TYPE=UserType.CUSTOMER;
 
     public Customer signUp(SignUpForm form) {// 가입
-
 
         return customerRepository.save(Customer.from(form));
     }
 
-    public String signIn(SignInForm form,UserType type) { //로그인
+    public String signIn(SignInForm form) { //로그인
         //return token
         Customer customer = validateSignIn(form).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));//로그인정보없음
-        return provider.createToken(customer.getEmail(), customer.getId(), type);
+        return provider.createToken(customer.getEmail(), customer.getId(), TYPE);
     }
 
     //아이디(이메일),비밀번호로 로그인 가능여부판단하기)

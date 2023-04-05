@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/customer")
 public class CustomerController {
     private final CustomerService customerService;
-    private static UserType TYPE=UserType.CUSTOMER;
     @PostMapping("/signup")// 회원가입
     public ResponseEntity customerSignUp(@RequestBody SignUpForm form) {
         customerService.signUp(form);
@@ -24,7 +23,7 @@ public class CustomerController {
     @PostMapping("/signin")//  로그인
     public ResponseEntity<String> customerSignIn(@RequestBody SignInForm form) {
 
-        return ResponseEntity.ok(customerService.signIn(form, TYPE)); //return login token
+        return ResponseEntity.ok(customerService.signIn(form)); //return login token
     }
 
     //예약하기
