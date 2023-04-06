@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
 @Entity
 @Builder
 @Setter
@@ -17,8 +18,6 @@ import java.util.List;
 public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column()
-
     private Long id;
 
     private String email;
@@ -28,8 +27,10 @@ public class Manager {
     @Column
     private String phone;
 
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "manager",cascade = CascadeType.ALL)
     private List<Shop> shop= new ArrayList<>();
+
 
     private boolean partner;
 

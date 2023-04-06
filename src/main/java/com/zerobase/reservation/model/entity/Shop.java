@@ -3,6 +3,10 @@ package com.zerobase.reservation.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 @Entity
 @Builder
@@ -17,11 +21,17 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
+    @JoinColumn(name="manger_id")
     private Manager manager;
 
 
-    @Column(name = "shop_name")
+    @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY)
+    private List<Reservation> reservation= new ArrayList<>();
+
+
+
     private String name;
 
     private String phone;
