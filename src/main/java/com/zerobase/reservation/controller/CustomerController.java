@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/customer")
 public class CustomerController {
+    private final String TOKEN_HEADER="X-AUTH-TOKEN";
     private final CustomerService customerService;
     @PostMapping("/signup")// 회원가입
     public ResponseEntity customerSignUp(@RequestBody SignUpForm form) {
@@ -29,7 +30,7 @@ public class CustomerController {
     //예약하기
     @PostMapping("/reservation/{shop_id}")
     public ResponseEntity makeReservation(
-            @RequestHeader("X-AUTH-TOKEN") String token,
+            @RequestHeader(name = TOKEN_HEADER) String token,
             String shop_id) {
 
         return null;

@@ -1,1 +1,18 @@
 
+
+
+### shop Login
+
+POST http://localhost:8080/manager/signin
+Content-Type: application/json
+
+{
+  "email": "testmanger@naver.com",
+  "password": "1234"
+}
+
+### delete shop
+
+DELETE  http://localhost:8080/manager/shop/delete/2
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXQzJyQlpkZE1Dem5yRUdSMDM2SU9aSnV4Ym5vSzdrU1FMS2I4ckZzOVBvPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDc4OTY2OSwiZXhwIjoxNjgwODc2MDY5fQ.0AhHhuh01SqATqeyLRLbhQf45kGsArlchQR-gokHAKA
+
