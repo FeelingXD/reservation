@@ -4,12 +4,8 @@ import com.zerobase.reservation.model.form.SignUpForm;
 import lombok.*;
 
 import javax.persistence.*;
-<<<<<<< Updated upstream
 import java.util.Collection;
-=======
-import java.util.ArrayList;
-import java.util.List;
->>>>>>> Stashed changes
+
 
 @Entity
 @Builder
