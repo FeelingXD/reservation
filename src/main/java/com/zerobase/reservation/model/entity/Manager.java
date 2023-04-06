@@ -4,7 +4,9 @@ import com.zerobase.reservation.model.form.SignUpForm;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Builder
@@ -15,7 +17,7 @@ import java.util.Collection;
 public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MANAGER_ID")
+    @Column()
 
     private Long id;
 
@@ -23,11 +25,11 @@ public class Manager {
     private String password;
 
     private String name;
-    @Column(unique = true)
+    @Column
     private String phone;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Collection<Restaurant> restaurant;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "manager",cascade = CascadeType.ALL)
+    private List<Shop> shop= new ArrayList<>();
 
     private boolean partner;
 

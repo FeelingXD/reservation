@@ -10,15 +10,16 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurant {
+@ToString
+public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="manger_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Manager manager;
+
 
     @Column(name = "shop_name")
     private String name;
