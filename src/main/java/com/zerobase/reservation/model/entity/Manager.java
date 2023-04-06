@@ -4,7 +4,9 @@ import com.zerobase.reservation.model.form.SignUpForm;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -22,11 +24,13 @@ public class Manager {
     private String password;
 
     private String name;
-    @Column(unique = true)
+    @Column
     private String phone;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Collection<Shop> shop;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "manager",cascade = CascadeType.ALL)
+    private List<Shop> shop= new ArrayList<>();
+
 
     private boolean partner;
 

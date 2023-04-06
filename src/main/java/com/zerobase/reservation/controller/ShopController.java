@@ -26,6 +26,7 @@ public class ShopController {
     public ResponseEntity<String> deleteShop(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long shop_id){
         managerService.deleteShop(token,shop_id);
         return ResponseEntity.ok().body("삭제되었습니다.");
+
     }
 
 }

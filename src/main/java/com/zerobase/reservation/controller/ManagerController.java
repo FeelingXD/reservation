@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/manager")
 public class ManagerController {
+    private final String TOKEN_HEADER="X-AUTH-TOKEN";
     private final ManagerService managerService;
 
     @PostMapping("/signup")// 회원가입
@@ -26,7 +27,7 @@ public class ManagerController {
     }
 
     @PostMapping("/joinpartner") //파트너쉽 가입
-    public ResponseEntity<String>  joinPartnerShip(@RequestHeader String token){
+    public ResponseEntity<String>  joinPartnerShip(@RequestHeader(name = TOKEN_HEADER) String token){
         managerService.joinPartner(token);
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }

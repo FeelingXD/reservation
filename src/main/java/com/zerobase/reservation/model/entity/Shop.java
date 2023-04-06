@@ -6,17 +6,21 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Entity
 @Builder
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @ManyToOne
     @JoinColumn(name="manger_id")
@@ -25,6 +29,7 @@ public class Shop {
 
     @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY)
     private List<Reservation> reservation= new ArrayList<>();
+
 
 
     private String name;
