@@ -7,6 +7,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 public class UserVo {
-    private Long customer_id;
+    private Long id;
     private String email;
 }

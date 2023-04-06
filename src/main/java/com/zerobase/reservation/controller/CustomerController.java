@@ -1,5 +1,6 @@
 package com.zerobase.reservation.controller;
 
+import com.zerobase.reservation.model.entity.constant.UserType;
 import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.service.CustomerService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/customer")
 public class CustomerController {
     private final CustomerService customerService;
-
     @PostMapping("/signup")// 회원가입
     public ResponseEntity customerSignUp(@RequestBody SignUpForm form) {
         customerService.signUp(form);
