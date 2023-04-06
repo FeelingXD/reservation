@@ -5,6 +5,8 @@ import com.zerobase.reservation.model.form.SignUpForm;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -17,12 +19,16 @@ public class Customer extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String email;
     private String password;
 
     private String name;
     @Column(unique = true)
     private String phone;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<Reservation> reservation=new ArrayList<>();
 
     public static Customer from(SignUpForm form) {
         return Customer.builder()

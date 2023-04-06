@@ -1,1 +1,13 @@
+### customer signup
+POST http://localhost:8080/customer/signup
+Content-Type: application/json
+
+### customer signin
+POST http://localhost:8080/customer/signin
+Content-Type: application/json
+
+{
+  "email": "testCustomer",
+  "password": "1234"
+}
 

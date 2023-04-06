@@ -4,7 +4,12 @@ import com.zerobase.reservation.model.form.SignUpForm;
 import lombok.*;
 
 import javax.persistence.*;
+<<<<<<< Updated upstream
 import java.util.Collection;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> Stashed changes
 
 @Entity
 @Builder
@@ -15,8 +20,6 @@ import java.util.Collection;
 public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MANAGER_ID")
-
     private Long id;
 
     private String email;
