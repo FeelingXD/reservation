@@ -13,6 +13,7 @@ public enum ErrorCode {
 
     
     //기능관련 권한
+    NOT_FOUND_SHOP(HttpStatus.BAD_REQUEST,"이미 파트너 회원입니다. ");
 
     private final HttpStatus httpStatus;
     private final String detail;

@@ -26,7 +26,7 @@ public class Manager {
     private String phone;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Collection<Restaurant> restaurant;
+    private Collection<Shop> shop;
 
     private boolean partner;
 
