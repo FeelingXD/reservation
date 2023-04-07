@@ -1,4 +1,4 @@
-package com.zerobase.reservation.model.dto;
+package com.zerobase.reservation.model.form;
 
 import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.model.entity.constant.ReservationStatus;
@@ -14,10 +14,10 @@ import java.time.format.DateTimeFormatter;
 @Setter
 @ToString
 @Builder
-public class ReservationDto {
+public class ReservationInputForm {
     String reservateAt;
 
-    public static Reservation toEntity(ReservationDto dto){
+    public static Reservation toEntity(ReservationInputForm dto){
         return Reservation
                 .builder()
                 .reservationAt(LocalDateTime.parse(dto.reservateAt, DateTimeFormatter.ofPattern("yy.MM.dd HH:mm")))
