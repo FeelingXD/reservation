@@ -1,6 +1,5 @@
 package com.zerobase.reservation.controller;
 
-import com.zerobase.reservation.model.entity.constant.UserType;
 import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.service.ManagerService;
@@ -30,6 +29,13 @@ public class ManagerController {
     public ResponseEntity<String>  joinPartnerShip(@RequestHeader(name = TOKEN_HEADER) String token){
         managerService.joinPartner(token);
         return ResponseEntity.ok().body("가입이완료되었습니다.");
+    }
+
+    @PostMapping("/reservation/{reservation_id}")
+    public ResponseEntity approveReservation(String token,@RequestParam Long reservation_id){
+
+        managerService.approveReservation(token,reservation_id);
+        return ResponseEntity.ok().build();
     }
 
 }

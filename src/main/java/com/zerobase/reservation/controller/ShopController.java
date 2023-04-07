@@ -1,7 +1,6 @@
 package com.zerobase.reservation.controller;
 
-import antlr.Token;
-import com.zerobase.reservation.model.dto.ShopDto;
+import com.zerobase.reservation.model.form.ShopInputForm;
 import com.zerobase.reservation.service.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +16,15 @@ public class ShopController {
     private final ManagerService managerService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addShop(@RequestHeader(name = TOKEN_HEADER) String token, ShopDto dto){
+    public ResponseEntity<String> addShop(@RequestHeader(name = TOKEN_HEADER) String token, @RequestBody ShopInputForm dto){ //매니저 상점 추가
         managerService.addShop(token,dto);
         return ResponseEntity.ok().body("추가 되었습니다.");
     }
 
     @DeleteMapping("/delete/{shop_id}")
-    public ResponseEntity<String> deleteShop(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long shop_id){
+    public ResponseEntity<String> deleteShop(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long shop_id){//매니저 상점 삭제
         managerService.deleteShop(token,shop_id);
         return ResponseEntity.ok().body("삭제되었습니다.");
-
     }
 
 }

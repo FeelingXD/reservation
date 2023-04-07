@@ -1,6 +1,7 @@
 package com.zerobase.reservation.model.entity;
 
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Shop {
 
     @Id
@@ -27,7 +27,7 @@ public class Shop {
     private Manager manager;
 
 
-    @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY )
     private List<Reservation> reservation= new ArrayList<>();
 
 
