@@ -3,10 +3,11 @@ package com.zerobase.reservation.model.form;
 import com.zerobase.reservation.model.entity.Shop;
 import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
 @Setter
-@ToString
-@Builder
 public class ShopInputForm {
     private String name;
     private String phone;
