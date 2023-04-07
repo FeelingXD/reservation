@@ -1,7 +1,6 @@
 package com.zerobase.reservation.controller;
 
-import com.zerobase.reservation.model.dto.ReservationDto;
-import com.zerobase.reservation.model.entity.constant.UserType;
+import com.zerobase.reservation.model.form.ReservationInputForm;
 import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.service.CustomerService;
@@ -32,17 +31,18 @@ public class CustomerController {
     }
 
 
+
     @PostMapping("/reservation/{shop_id}")
-    public ResponseEntity reservateShop(@RequestHeader(name = TOKEN_HEADER) String token, Long shop_id, @ApiParam("yy.MM.dd HH:mm") ReservationDto dto) {
+    public ResponseEntity<String> reservateShop(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable(name = "shop_id") Long shop_id,  @RequestBody ReservationInputForm dto) {
         customerService.reservateShop(token,shop_id,dto);
-        return null;
+        return ResponseEntity.ok().body("예약 되었습니다.");
     }
 
     //본인예약확인하기
     @GetMapping("/reservation/")
-    public ResponseEntity getMyReservation(@RequestHeader(name = TOKEN_HEADER) String token) {
+    public ResponseEntity<String> getMyReservation(@RequestHeader(name = TOKEN_HEADER) String token) {
+        customerService.getMyReservation(token);
         return null;
     }
-
 
 }
