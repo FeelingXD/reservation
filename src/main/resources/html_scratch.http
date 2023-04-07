@@ -2,6 +2,12 @@
 POST http://localhost:8080/customer/signup
 Content-Type: application/json
 
+{
+  "email": "testCustomer",
+  "password": "1234",
+  "name": "string",
+  "phone": "string"
+}
 ### customer signin
 POST http://localhost:8080/customer/signin
 Content-Type: application/json
@@ -11,18 +17,53 @@ Content-Type: application/json
   "password": "1234"
 }
 
+###make reservation
+POST http://localhost:8080/customer/reservation/1
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgwODU2NDg5LCJleHAiOjE2ODA5NDI4ODl9.MEqiGpy_3DA33t4RAHN2_hTUOhzu3cPMa0Sz2dl1YOc
+Content-Type: application/json
+
+{
+  "reservateAt": "23.01.11 11:11"
+}
 
 
-### shop Login
+###manager signup
+POST http://localhost:8080/manager/signup
+Content-Type: application/json
 
+{
+  "email": "testmanager@gmail.com",
+  "name": "매니저",
+  "password": "1234",
+  "phone": "string"
+}
+
+###manager signin
 POST http://localhost:8080/manager/signin
 Content-Type: application/json
 
 {
-  "email": "testmanger@naver.com",
+   "email": "testmanager@gmail.com",
   "password": "1234"
 }
 
+
+###joinpartner
+POST http://localhost:8080/manager/joinpartner
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDg1NTU4NywiZXhwIjoxNjgwOTQxOTg3fQ.o06L8YmPksxZFEK6Qxtx_LYw7Tc_2bzg69Z_YCZqVtY
+
+### add shop
+
+POST http://localhost:8080/manager/shop/add
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDg1NTU4NywiZXhwIjoxNjgwOTQxOTg3fQ.o06L8YmPksxZFEK6Qxtx_LYw7Tc_2bzg69Z_YCZqVtY
+
+{
+  "location": "string",
+  "name": "string",
+  "phone": "string"
+}
 ### delete shop
 
 DELETE  http://localhost:8080/manager/shop/delete/2
