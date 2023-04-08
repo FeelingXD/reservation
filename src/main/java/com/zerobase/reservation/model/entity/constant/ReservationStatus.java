@@ -3,6 +3,10 @@ package com.zerobase.reservation.model.entity.constant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @AllArgsConstructor
 @Getter
 public enum ReservationStatus {
@@ -14,5 +18,12 @@ public enum ReservationStatus {
     UNAVAILABLE("사용 불가"),
     REVIEW_COMPLETE("리뷰 작성됨");
     private final String text;
+
+    private static final Map<String,ReservationStatus> BY_TEXT=
+            Stream.of(values()).collect(Collectors.toMap(ReservationStatus::name,e->e));
+    public static ReservationStatus valueOfText(String text){
+        return BY_TEXT.get(text);
+    }
+
 
 }

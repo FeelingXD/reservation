@@ -1,5 +1,6 @@
 package com.zerobase.reservation.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zerobase.reservation.exception.CustomException;
 import com.zerobase.reservation.exception.ErrorCode;
@@ -58,26 +59,18 @@ public class CustomerService {
 
     }
 
-    public void getMyReservation(String token) {
-        StringBuilder result = new StringBuilder();
-        List<ReservationDto> list = new ArrayList<>();
+    public List<String> getMyReservation(String token) throws JsonProcessingException {
         UserVo user = provider.getUserVo(token);
 
         Customer c = customerRepository.findAllById(user.getId())
                 .filter(customer -> customer.getEmail().equals(user.getEmail()))
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
 
+        List<String> result=new ArrayList<>();
         for (Reservation r : reservationRepository.findByCustomer(c)) {
-            list.add(ReservationDto.builder()
-                    .reservatedAt(r.getReservationAt())
-                    .reservationStatus(r.getReservationStatus())
-                    .reservationId(r.getId())
-                    .phone(r.getCustomer().getPhone())
-                    .shop_name(r.getShop().getName())
-                    .build()
-            );
+            result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));
         }
-        System.out.println(list);
+        return result;
     }
 
     //아이디(이메일),비밀번호로 로그인 가능여부판단하기)

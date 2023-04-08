@@ -1,5 +1,6 @@
 package com.zerobase.reservation.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zerobase.reservation.model.form.ReservationInputForm;
 import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.model.form.SignUpForm;
@@ -7,6 +8,8 @@ import com.zerobase.reservation.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -38,9 +41,9 @@ public class CustomerController {
 
     //본인예약확인하기
     @GetMapping("/reservation/")
-    public ResponseEntity<String> getMyReservation(@RequestHeader(name = TOKEN_HEADER) String token) {
-        customerService.getMyReservation(token);
-        return null;
+    public ResponseEntity<List<String>> getMyReservation(@RequestHeader(name = TOKEN_HEADER) String token) throws JsonProcessingException {
+        var result=customerService.getMyReservation(token);
+        return ResponseEntity.ok().body(result);
     }
 
 }

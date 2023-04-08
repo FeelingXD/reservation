@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     // 로그인 관련
     NOT_FOUND_USER(HttpStatus.BAD_REQUEST, "해당정보의 유저를 찾을수 없습니다."),
+    WRONG_VARIABLE(HttpStatus.BAD_REQUEST, "잘못된 요청값 입니다."),
 
     // 매니저 관련
     NOT_FOUND_SHOP(HttpStatus.BAD_REQUEST, "해당정보의 가게를 찾을수 없습니다."),

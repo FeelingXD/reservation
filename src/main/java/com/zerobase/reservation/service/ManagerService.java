@@ -1,9 +1,12 @@
 package com.zerobase.reservation.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zerobase.reservation.exception.CustomException;
 import com.zerobase.reservation.exception.ErrorCode;
 import com.zerobase.reservation.jwt.JwtAuthenticationProvider;
 import com.zerobase.reservation.model.UserVo;
+import com.zerobase.reservation.model.dto.ReservationDto;
 import com.zerobase.reservation.model.entity.Manager;
 import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.model.entity.Shop;
@@ -18,8 +21,11 @@ import com.zerobase.reservation.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -31,7 +37,7 @@ public class ManagerService {
     private final ReservationRepository reservationRepository;
     private final JwtAuthenticationProvider provider;
 
-
+    private final ObjectMapper mapper;
     public Manager signUp(SignUpForm form) {// 가입
         return managerRepository.save(Manager.from(form));
     }
@@ -115,4 +121,31 @@ public class ManagerService {
         return managerRepository.findByEmailAndPassword(form.getEmail(), form.getPassword());
     }
 
+    public List<String> getReservation(String token) throws JsonProcessingException { //매니저 string token 으로 권한검사 이후 자신의 상점들 에대한 reservation 반환
+
+        UserVo user= provider.getUserVo(token);
+        Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        List<Reservation> list=reservationRepository.findByShop_Manager_Id(m.getId());
+        List<String> result=new ArrayList<>();
+        for(Reservation r:list){
+            result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));
+        }
+        return result;
+
+    }
+
+    public Object getReservation(String token, String reservationStatus) throws JsonProcessingException {
+        UserVo user= provider.getUserVo(token);
+        Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        ReservationStatus rs=ReservationStatus.valueOfText(reservationStatus);
+        if(rs==null){
+            throw new CustomException(ErrorCode.WRONG_VARIABLE);
+        }
+        List<Reservation> list=reservationRepository.findByShop_Manager_Id(m.getId()).stream().filter(reservation -> reservation.getReservationStatus().equals(rs)).collect(Collectors.toList());
+        List<String> result=new ArrayList<>();
+        for(Reservation r:list){
+            result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));
+        }
+        return result;
+    }
 }
