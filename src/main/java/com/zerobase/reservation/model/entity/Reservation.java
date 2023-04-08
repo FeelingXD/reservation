@@ -2,7 +2,6 @@ package com.zerobase.reservation.model.entity;
 
 import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

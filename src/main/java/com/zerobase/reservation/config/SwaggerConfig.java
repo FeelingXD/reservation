@@ -17,7 +17,7 @@ import java.util.Set;
 @EnableWebMvc
 public class SwaggerConfig {
 
-    private ApiInfo swaggerInfo(){
+    private ApiInfo swaggerInfo() {
         return new ApiInfoBuilder()
                 .title("Reservation application Api")
                 .description("예약 api")

@@ -13,7 +13,7 @@ public class ShopInputForm {
     private String phone;
     private String location;
 
-    public static Shop toEntity(ShopInputForm dto){
+    public static Shop toEntity(ShopInputForm dto) {
         return Shop.builder()
                 .name(dto.getName())
                 .phone(dto.getPhone())

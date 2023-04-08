@@ -1,10 +1,9 @@
 package com.zerobase.reservation.controller;
 
 import com.zerobase.reservation.model.form.ReservationInputForm;
-import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.model.form.SignInForm;
+import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.service.CustomerService;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +30,9 @@ public class CustomerController {
     }
 
 
-
     @PostMapping("/reservation/{shop_id}")
-    public ResponseEntity<String> reservateShop(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable(name = "shop_id") Long shop_id,  @RequestBody ReservationInputForm dto) {
-        customerService.reservateShop(token,shop_id,dto);
+    public ResponseEntity<String> reservateShop(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable(name = "shop_id") Long shop_id, @RequestBody ReservationInputForm dto) {
+        customerService.reservateShop(token, shop_id, dto);
         return ResponseEntity.ok().body("예약 되었습니다.");
     }
 

@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ManagerRepository extends JpaRepository<Manager,Long> {
+public interface ManagerRepository extends JpaRepository<Manager, Long> {
     Optional<Manager> findByEmailAndPassword(String email, String password);
-    Optional<Manager> findByIdAndEmail(Long id,String Email);//token
+
+    Optional<Manager> findByIdAndEmail(Long id, String Email);//token
 
     @EntityGraph(attributePaths = {"shop"})
     Optional<Manager> findAllById(Long id);

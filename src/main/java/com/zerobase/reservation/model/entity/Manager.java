@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -28,12 +27,11 @@ public class Manager {
     private String phone;
 
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "manager",cascade = CascadeType.ALL)
-    private List<Shop> shop= new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "manager", cascade = CascadeType.ALL)
+    private List<Shop> shop = new ArrayList<>();
 
 
     private boolean partner;
-
 
 
     public static Manager from(SignUpForm form) {

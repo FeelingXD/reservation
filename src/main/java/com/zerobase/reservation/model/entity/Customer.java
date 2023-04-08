@@ -1,6 +1,5 @@
 package com.zerobase.reservation.model.entity;
 
-import com.zerobase.reservation.model.entity.BaseEntity;
 import com.zerobase.reservation.model.form.SignUpForm;
 import lombok.*;
 
@@ -27,8 +26,8 @@ public class Customer extends BaseEntity {
     @Column(unique = true)
     private String phone;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer",cascade = CascadeType.ALL)
-    private List<Reservation> reservation=new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Reservation> reservation = new ArrayList<>();
 
     public static Customer from(SignUpForm form) {
         return Customer.builder()

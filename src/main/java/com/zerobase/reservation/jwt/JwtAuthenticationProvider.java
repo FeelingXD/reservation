@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.Objects;
 
 public class JwtAuthenticationProvider {
-    private String secretKey = "01234567890123456789012345678901asdfqewrcxzcv";
+    private final String secretKey = "01234567890123456789012345678901asdfqewrcxzcv";
 
-    private long tokenValidTime = 1000L * 60 * 60 * 24;
+    private final long tokenValidTime = 1000L * 60 * 60 * 24;
 
     public String createToken(String email, Long id, UserType userType) {
         Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email)).setId(Aes256Util.encrypt(id.toString()));

@@ -8,6 +8,7 @@ Content-Type: application/json
   "name": "string",
   "phone": "string"
 }
+
 ### customer signin
 POST http://localhost:8080/customer/signin
 Content-Type: application/json
@@ -43,7 +44,7 @@ POST http://localhost:8080/manager/signin
 Content-Type: application/json
 
 {
-   "email": "testmanager@gmail.com",
+  "email": "testmanager@gmail.com",
   "password": "1234"
 }
 
@@ -64,6 +65,7 @@ X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc2
   "name": "string",
   "phone": "string"
 }
+
 ### delete shop
 
 DELETE  http://localhost:8080/manager/shop/delete/2

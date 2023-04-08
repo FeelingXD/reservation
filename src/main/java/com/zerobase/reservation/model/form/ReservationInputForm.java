@@ -15,10 +15,10 @@ import java.time.format.DateTimeFormatter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class ReservationInputForm {
-    @ApiModelProperty(notes = "예약시간 ",example = "yy.MM.dd HH:mm" )
+    @ApiModelProperty(notes = "예약시간 ", example = "yy.MM.dd HH:mm")
     String reservateAt;
 
-    public static Reservation toEntity(ReservationInputForm dto){
+    public static Reservation toEntity(ReservationInputForm dto) {
         return Reservation
                 .builder()
                 .reservationAt(LocalDateTime.parse(dto.reservateAt, DateTimeFormatter.ofPattern("yy.MM.dd HH:mm")))

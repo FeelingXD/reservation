@@ -1,12 +1,10 @@
 package com.zerobase.reservation.model.entity;
 
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 @Entity
@@ -23,13 +21,12 @@ public class Shop {
 
 
     @ManyToOne
-    @JoinColumn(name="manger_id")
+    @JoinColumn(name = "manger_id")
     private Manager manager;
 
 
-    @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY )
-    private List<Reservation> reservation= new ArrayList<>();
-
+    @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY)
+    private List<Reservation> reservation = new ArrayList<>();
 
 
     private String name;

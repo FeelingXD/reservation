@@ -4,12 +4,12 @@ import com.zerobase.reservation.exception.CustomException;
 import com.zerobase.reservation.exception.ErrorCode;
 import com.zerobase.reservation.jwt.JwtAuthenticationProvider;
 import com.zerobase.reservation.model.UserVo;
-import com.zerobase.reservation.model.entity.Reservation;
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
-import com.zerobase.reservation.model.form.ShopInputForm;
 import com.zerobase.reservation.model.entity.Manager;
+import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.model.entity.Shop;
+import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import com.zerobase.reservation.model.entity.constant.UserType;
+import com.zerobase.reservation.model.form.ShopInputForm;
 import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.repository.ManagerRepository;
@@ -85,11 +85,11 @@ public class ManagerService {
 
         UserVo user = provider.getUserVo(token);
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
-        Reservation r= reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+        Reservation r = reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if(Objects.equals(r.getShop().getManager().getId(), user.getId()))
+        if (Objects.equals(r.getShop().getManager().getId(), user.getId()))
             throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
-        if (r.getReservationStatus()!=ReservationStatus.WAITING_FOR_APPROVAL)
+        if (r.getReservationStatus() != ReservationStatus.WAITING_FOR_APPROVAL)
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_WAITING_APPROVAL);
 
         r.setReservationStatus(ReservationStatus.RESERVATION_COMPLETE);
@@ -100,7 +100,6 @@ public class ManagerService {
     private Optional<Manager> validateSignIn(SignInForm form) {
         return managerRepository.findByEmailAndPassword(form.getEmail(), form.getPassword());
     }
-
 
 
 }
