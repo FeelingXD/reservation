@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ShopController {
 
-    private final String TOKEN_HEADER="X-AUTH-TOKEN";
+    private final String TOKEN_HEADER = "X-AUTH-TOKEN";
 
     private final ManagerService managerService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addShop(@RequestHeader(name = TOKEN_HEADER) String token, @RequestBody ShopInputForm dto){ //매니저 상점 추가
-        managerService.addShop(token,dto);
+    public ResponseEntity<String> addShop(@RequestHeader(name = TOKEN_HEADER) String token, @RequestBody ShopInputForm dto) { //매니저 상점 추가
+        managerService.addShop(token, dto);
         return ResponseEntity.ok().body("추가 되었습니다.");
     }
 
     @DeleteMapping("/delete/{shop_id}")
-    public ResponseEntity<String> deleteShop(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long shop_id){//매니저 상점 삭제
-        managerService.deleteShop(token,shop_id);
+    public ResponseEntity<String> deleteShop(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long shop_id) {//매니저 상점 삭제
+        managerService.deleteShop(token, shop_id);
         return ResponseEntity.ok().body("삭제되었습니다.");
     }
 
