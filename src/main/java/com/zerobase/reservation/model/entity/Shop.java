@@ -30,6 +30,8 @@ public class Shop {
     @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY )
     private List<Reservation> reservation= new ArrayList<>();
 
+    @OneToMany(mappedBy = "shop" , fetch =FetchType.LAZY)
+    private List<Kiosk> kiosk = new ArrayList<>();
 
 
     private String name;

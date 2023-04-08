@@ -87,7 +87,7 @@ public class ManagerService {
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Reservation r= reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if(Objects.equals(r.getShop().getManager().getId(), user.getId()))
+        if(!Objects.equals(r.getShop().getManager().getId(), user.getId()))
             throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
         if (r.getReservationStatus()!=ReservationStatus.WAITING_FOR_APPROVAL)
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_WAITING_APPROVAL);
@@ -97,10 +97,22 @@ public class ManagerService {
     }
 
     //아이디(이메일),비밀번호로 로그인 가능여부판단하기)
+    public Reservation rejectReservation(String token, Long reservationId) {
+        UserVo user = provider.getUserVo(token);
+        Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        Reservation r= reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+
+        if(Objects.equals(r.getShop().getManager().getId(), user.getId()))
+            throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
+        if (r.getReservationStatus()!=ReservationStatus.WAITING_FOR_APPROVAL)
+            throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_WAITING_APPROVAL);
+
+        r.setReservationStatus(ReservationStatus.RESERVATION_REJECTED);
+        return reservationRepository.save(r);
+    }
+
     private Optional<Manager> validateSignIn(SignInForm form) {
         return managerRepository.findByEmailAndPassword(form.getEmail(), form.getPassword());
     }
-
-
 
 }

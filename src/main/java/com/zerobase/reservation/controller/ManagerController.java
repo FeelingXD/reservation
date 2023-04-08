@@ -31,10 +31,16 @@ public class ManagerController {
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }
 
-    @PostMapping("/reservation/{reservation_id}")
-    public ResponseEntity approveReservation(String token,@RequestParam Long reservation_id){
-
+    @PostMapping("/reservation/approve/{reservation_id}") //예약 승인
+    public ResponseEntity approveReservation(String token,@PathVariable Long reservation_id){
         managerService.approveReservation(token,reservation_id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/reservation/reject/{reservation_id}") //예약 거절
+    public ResponseEntity rejectReservation(String token,@PathVariable Long reservation_id){
+
+        managerService.rejectReservation(token,reservation_id);
         return ResponseEntity.ok().build();
     }
 
