@@ -11,6 +11,7 @@ public class ShopDto {
     public static class Simple{
         Long id;
         String shop_name;
+        Double rate;
 
     }
 
@@ -19,6 +20,7 @@ public class ShopDto {
     public static class Detail{
         Long id;
         String shop_name;
+        Double rate;
         String shop_phone;
         String shop_location;
     }
@@ -27,12 +29,14 @@ public class ShopDto {
         return Simple.builder()
                 .id(s.getId())
                 .shop_name(s.getName())
+                .rate(s.getRate())
                 .build();
     }
     public static Detail toDetail(Shop s){
         return Detail.builder()
                 .id(s.getId())
                 .shop_name(s.getName())
+                .rate(s.getRate())
                 .shop_location(s.getLocation())
                 .shop_phone(s.getPhone())
                 .build();

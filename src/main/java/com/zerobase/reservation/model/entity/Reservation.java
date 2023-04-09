@@ -30,6 +30,9 @@ public class Reservation {
     @JoinColumn(name = "shop_id")
     private Shop shop; //상점
 
+    @OneToOne(mappedBy = "reservation")
+    private Review review;
+
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 

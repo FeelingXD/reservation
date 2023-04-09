@@ -39,8 +39,7 @@ public class KioskService {
     public Reservation checkReservation(Long kiosk_id, KioskInputForm form){ // 예약자 전화번호로 예약 승인하기
         var k=kioskRepository.findById(kiosk_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_KIOSK));
         var r=reservationRepository.findByCustomer_Phone(form.getCustomer_phone())
-                .stream().filter(reservation -> reservation.getId().equals(form.getId()))
-                .findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+                .stream().findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
         if(!Objects.equals(r.getShop().getId(), k.getShop().getId())){
             throw new CustomException(ErrorCode.KIOSK_UNMATCHED_SHOP);
@@ -50,7 +49,7 @@ public class KioskService {
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_RESERVATION_COMPLETE);
         }
 
-        if(r.getReservationAt().minusMinutes(10).isBefore(LocalDateTime.now())){
+        if(LocalDateTime.now().isBefore(r.getReservationAt().minusMinutes(10))){
             r.setReservationStatus(ReservationStatus.USE_COMPLETE);
             return reservationRepository.save(r);
         }

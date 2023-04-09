@@ -125,7 +125,7 @@ public class ManagerService {
 
         UserVo user= provider.getUserVo(token);
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
-        List<Reservation> list=reservationRepository.findByShop_Manager_Id(m.getId());
+        var list=reservationRepository.findByShop_Manager_Id(m.getId());
         List<String> result=new ArrayList<>();
         for(Reservation r:list){
             result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));

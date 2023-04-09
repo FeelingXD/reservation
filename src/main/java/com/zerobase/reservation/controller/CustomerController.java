@@ -39,7 +39,7 @@ public class CustomerController {
         return ResponseEntity.ok().body("예약 되었습니다.");
     }
 
-    //본인예약확인하기
+    //본인 예약확인하기
     @GetMapping("/reservation/")
     public ResponseEntity<List<String>> getMyReservation(@RequestHeader(name = TOKEN_HEADER) String token) throws JsonProcessingException {
         var result=customerService.getMyReservation(token);

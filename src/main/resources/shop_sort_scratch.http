@@ -1,0 +1,5 @@
+### sort name
+GET http://localhost:8080/shop/NAME
+
+### sort rate
+GET http://localhost:8080/shop/RATE

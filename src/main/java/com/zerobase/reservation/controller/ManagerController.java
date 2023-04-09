@@ -37,25 +37,24 @@ public class ManagerController {
     }
 
     @GetMapping("/reservation")// 매니저가 처리할수있는 모든예약확인
-    public ResponseEntity<List<String>> getReservation(@RequestHeader String token) throws JsonProcessingException {
+    public ResponseEntity<List<String>> getReservation(@RequestHeader(name = TOKEN_HEADER) String token) throws JsonProcessingException {
         var result=managerService.getReservation(token);
         return ResponseEntity.ok().body(result);
     }
     @GetMapping("/reservation/{reservation_status}")// 매니저가 처리할수있는 모든예약확인
-    public ResponseEntity getReservation(@RequestHeader String token, String reservationStatus) throws JsonProcessingException {
+    public ResponseEntity getReservation(@RequestHeader(name = TOKEN_HEADER) String token, String reservationStatus) throws JsonProcessingException {
         var result=managerService.getReservation(token,reservationStatus);
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/reservation/approve/{reservation_id}") //예약 승인
-    public ResponseEntity approveReservation(String token,@PathVariable Long reservation_id){
+    public ResponseEntity approveReservation(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long reservation_id){
         managerService.approveReservation(token,reservation_id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/reservation/reject/{reservation_id}") //예약 거절
-    public ResponseEntity rejectReservation(String token,@PathVariable Long reservation_id){
-
+    public ResponseEntity rejectReservation(@RequestHeader(name = TOKEN_HEADER)String token,@PathVariable Long reservation_id){
         managerService.rejectReservation(token,reservation_id);
         return ResponseEntity.ok().build();
     }

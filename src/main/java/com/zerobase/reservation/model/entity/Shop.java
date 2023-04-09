@@ -31,10 +31,13 @@ public class Shop {
     @OneToMany(mappedBy = "shop" , fetch =FetchType.LAZY)
     private List<Kiosk> kiosk = new ArrayList<>();
 
+    @OneToMany(mappedBy = "shop", fetch =FetchType.LAZY)
+    private List<Review> review = new ArrayList<>();
 
     private String name;
 
     private String phone;
     private String location;
+    private Double rate=0.0;
 
 }

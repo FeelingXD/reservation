@@ -7,6 +7,8 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-public class KioskInputForm {
-    String customer_phone;
+public class ReviewInputForm {
+    private String subject;
+    private String text;
+    private Double rate;
 }
