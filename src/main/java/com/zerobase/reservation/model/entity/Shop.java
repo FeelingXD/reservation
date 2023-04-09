@@ -21,7 +21,7 @@ public class Shop {
 
 
     @ManyToOne
-    @JoinColumn(name = "manger_id")
+    @JoinColumn(name = "manager_id")
     private Manager manager;
 
 

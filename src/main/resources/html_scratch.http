@@ -71,3 +71,6 @@ X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc2
 DELETE  http://localhost:8080/manager/shop/delete/2
 X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXQzJyQlpkZE1Dem5yRUdSMDM2SU9aSnV4Ym5vSzdrU1FMS2I4ckZzOVBvPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDc4OTY2OSwiZXhwIjoxNjgwODc2MDY5fQ.0AhHhuh01SqATqeyLRLbhQf45kGsArlchQR-gokHAKA
 
+
+###
+GET http://localhost:8080/test/api/v1/easteregg
