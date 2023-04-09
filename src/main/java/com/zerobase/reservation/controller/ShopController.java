@@ -18,19 +18,20 @@ public class ShopController {
     private final String TOKEN_HEADER = "X-AUTH-TOKEN";
     private final ManagerService managerService;
     private final ShopService shopService;
+
     @GetMapping
-    public ResponseEntity<List<ShopDto.Simple>> getShop(){
+    public ResponseEntity<List<ShopDto.Simple>> getShop() {
         return ResponseEntity.ok().body(shopService.getAllShop());
     }
 
     @GetMapping("/{sort_type}")
-    public ResponseEntity getSortedShop(@PathVariable String sort_type){
+    public ResponseEntity getSortedShop(@PathVariable String sort_type) {
         return ResponseEntity.ok().body(shopService.getSortedShop(sort_type));
     }
 
 
     @GetMapping("/detail/{shop_id}")
-    public ResponseEntity<ShopDto.Detail> getDetail(@PathVariable Long shop_id){
+    public ResponseEntity<ShopDto.Detail> getDetail(@PathVariable Long shop_id) {
         return ResponseEntity.ok().body(shopService.getDetail(shop_id));
     }
 

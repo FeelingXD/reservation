@@ -14,8 +14,8 @@ public class ReviewController {//리뷰 컨트롤러
     private final ReviewService reviewService;
 
     @PostMapping("/write/{reservation_id}")
-    public ResponseEntity writeReview(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long reservation_id,@RequestBody ReviewInputForm form){
-        reviewService.writeReview(token,reservation_id,form);
+    public ResponseEntity writeReview(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id, @RequestBody ReviewInputForm form) {
+        reviewService.writeReview(token, reservation_id, form);
         return null;
     }
 }

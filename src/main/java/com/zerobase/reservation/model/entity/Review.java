@@ -25,6 +25,7 @@ public class Review {
     private String subject;
     private String text;
     private Double rate;
+
     @PostPersist
     @PostUpdate
     public void updateShopRate() {

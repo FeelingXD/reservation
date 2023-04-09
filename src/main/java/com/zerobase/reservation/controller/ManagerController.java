@@ -1,12 +1,10 @@
 package com.zerobase.reservation.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import com.zerobase.reservation.model.form.SignInForm;
 import com.zerobase.reservation.model.form.SignUpForm;
 import com.zerobase.reservation.service.ManagerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,24 +36,25 @@ public class ManagerController {
 
     @GetMapping("/reservation")// 매니저가 처리할수있는 모든예약확인
     public ResponseEntity<List<String>> getReservation(@RequestHeader(name = TOKEN_HEADER) String token) throws JsonProcessingException {
-        var result=managerService.getReservation(token);
+        var result = managerService.getReservation(token);
         return ResponseEntity.ok().body(result);
     }
+
     @GetMapping("/reservation/{reservation_status}")// 매니저가 처리할수있는 모든예약확인
     public ResponseEntity getReservation(@RequestHeader(name = TOKEN_HEADER) String token, String reservationStatus) throws JsonProcessingException {
-        var result=managerService.getReservation(token,reservationStatus);
+        var result = managerService.getReservation(token, reservationStatus);
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/reservation/approve/{reservation_id}") //예약 승인
-    public ResponseEntity approveReservation(@RequestHeader(name = TOKEN_HEADER) String token,@PathVariable Long reservation_id){
-        managerService.approveReservation(token,reservation_id);
+    public ResponseEntity approveReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
+        managerService.approveReservation(token, reservation_id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/reservation/reject/{reservation_id}") //예약 거절
-    public ResponseEntity rejectReservation(@RequestHeader(name = TOKEN_HEADER)String token,@PathVariable Long reservation_id){
-        managerService.rejectReservation(token,reservation_id);
+    public ResponseEntity rejectReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
+        managerService.rejectReservation(token, reservation_id);
         return ResponseEntity.ok().build();
     }
 

@@ -27,39 +27,39 @@ public class KioskService {
     private final ShopRepository shopRepository;
     private final KioskRepository kioskRepository;
     private final JwtAuthenticationProvider provider;
+
     public Kiosk addKiosk(String token, Long shopId) { //매니저토큰 필요! 상점 키오스크 추가하기 .
         UserVo user = provider.getUserVo(token);
-        Shop s= shopRepository.findById(shopId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_SHOP));
+        Shop s = shopRepository.findById(shopId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_SHOP));
 
-        if (!(Objects.equals(s.getManager().getId(), user.getId()))||!(Objects.equals(s.getManager().getEmail(),user.getEmail()))){
-            throw  new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
+        if (!(Objects.equals(s.getManager().getId(), user.getId())) || !(Objects.equals(s.getManager().getEmail(), user.getEmail()))) {
+            throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
         }
         return kioskRepository.save(Kiosk.builder().shop(s).build());
     }
-    public Reservation checkReservation(Long kiosk_id, KioskInputForm form){ // 예약자 전화번호로 예약 승인하기
-        var k=kioskRepository.findById(kiosk_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_KIOSK));
-        var r=reservationRepository.findByCustomer_Phone(form.getCustomer_phone())
+
+    public Reservation checkReservation(Long kiosk_id, KioskInputForm form) { // 예약자 전화번호로 예약 승인하기
+        var k = kioskRepository.findById(kiosk_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_KIOSK));
+        var r = reservationRepository.findByCustomer_Phone(form.getCustomer_phone())
                 .stream().findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if(!Objects.equals(r.getShop().getId(), k.getShop().getId())){
+        if (!Objects.equals(r.getShop().getId(), k.getShop().getId())) {
             throw new CustomException(ErrorCode.KIOSK_UNMATCHED_SHOP);
         }
 
-        if(r.getReservationStatus()!=ReservationStatus.RESERVATION_COMPLETE){
+        if (r.getReservationStatus() != ReservationStatus.RESERVATION_COMPLETE) {
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_RESERVATION_COMPLETE);
         }
 
-        if(LocalDateTime.now().isBefore(r.getReservationAt().minusMinutes(10))){
+        if (LocalDateTime.now().isBefore(r.getReservationAt().minusMinutes(10))) {
             r.setReservationStatus(ReservationStatus.USE_COMPLETE);
             return reservationRepository.save(r);
-        }
-        else {
+        } else {
             r.setReservationStatus(ReservationStatus.UNAVAILABLE);
             reservationRepository.save(r);
             throw new CustomException(ErrorCode.RESERVATION_TIME_OVER);
         }
     }
-
 
 
 }

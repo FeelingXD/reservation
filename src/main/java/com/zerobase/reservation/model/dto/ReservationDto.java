@@ -17,7 +17,8 @@ public class ReservationDto {
 
     private LocalDateTime reservatedAt;
     private ReservationStatus reservationStatus;
-    public static ReservationDto toDto(Reservation r){
+
+    public static ReservationDto toDto(Reservation r) {
         return ReservationDto.builder()
                 .reservatedAt(r.getReservationAt())
                 .reservationStatus(r.getReservationStatus())

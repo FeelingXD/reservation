@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,23 +18,24 @@ import java.util.stream.Collectors;
 public class ShopService {
     private final ShopRepository shopRepository;
 
-    public List<ShopDto.Simple> getAllShop(){
+    public List<ShopDto.Simple> getAllShop() {
         return shopRepository.findAll().stream().map(ShopDto::toSimple).collect(Collectors.toList());
     }
-    public ShopDto.Detail getDetail(Long shop_id){
-        Shop s=shopRepository.findById(shop_id).orElseThrow(()->new CustomException(ErrorCode.NOT_FOUND_SHOP));
+
+    public ShopDto.Detail getDetail(Long shop_id) {
+        Shop s = shopRepository.findById(shop_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_SHOP));
         return ShopDto.toDetail(s);
     }
 
     public List<ShopDto.Simple> getSortedShop(String sortType) {
-        var sort=SortType.valueOfText(sortType);
+        var sort = SortType.valueOfText(sortType);
         List<Shop> r;
-        switch (sort){
+        switch (sort) {
             case NAME:
-                r= shopRepository.findAll(Sort.by(Sort.Direction.ASC,"name"));
+                r = shopRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
                 break;
             case RATE:
-                r= shopRepository.findAll(Sort.by(Sort.Direction.DESC,"rate"));
+                r = shopRepository.findAll(Sort.by(Sort.Direction.DESC, "rate"));
                 break;
             default:
                 return getAllShop();

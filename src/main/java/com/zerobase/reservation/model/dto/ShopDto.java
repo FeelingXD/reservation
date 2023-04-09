@@ -8,7 +8,7 @@ public class ShopDto {
 
     @Data
     @Builder
-    public static class Simple{
+    public static class Simple {
         Long id;
         String shop_name;
         Double rate;
@@ -17,7 +17,7 @@ public class ShopDto {
 
     @Data
     @Builder
-    public static class Detail{
+    public static class Detail {
         Long id;
         String shop_name;
         Double rate;
@@ -25,14 +25,15 @@ public class ShopDto {
         String shop_location;
     }
 
-    public static Simple toSimple(Shop s){
+    public static Simple toSimple(Shop s) {
         return Simple.builder()
                 .id(s.getId())
                 .shop_name(s.getName())
                 .rate(s.getRate())
                 .build();
     }
-    public static Detail toDetail(Shop s){
+
+    public static Detail toDetail(Shop s) {
         return Detail.builder()
                 .id(s.getId())
                 .shop_name(s.getName())

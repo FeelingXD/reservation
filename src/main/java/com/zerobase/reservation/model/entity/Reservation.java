@@ -1,7 +1,6 @@
 package com.zerobase.reservation.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import lombok.*;
 

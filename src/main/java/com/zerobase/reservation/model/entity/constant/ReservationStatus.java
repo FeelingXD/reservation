@@ -19,9 +19,10 @@ public enum ReservationStatus {
     REVIEW_COMPLETE("리뷰 작성됨");
     private final String text;
 
-    private static final Map<String,ReservationStatus> BY_TEXT=
-            Stream.of(values()).collect(Collectors.toMap(ReservationStatus::name,e->e));
-    public static ReservationStatus valueOfText(String text){
+    private static final Map<String, ReservationStatus> BY_TEXT =
+            Stream.of(values()).collect(Collectors.toMap(ReservationStatus::name, e -> e));
+
+    public static ReservationStatus valueOfText(String text) {
         return BY_TEXT.get(text);
     }
 

@@ -38,6 +38,7 @@ public class ManagerService {
     private final JwtAuthenticationProvider provider;
 
     private final ObjectMapper mapper;
+
     public Manager signUp(SignUpForm form) {// 가입
         return managerRepository.save(Manager.from(form));
     }
@@ -93,7 +94,7 @@ public class ManagerService {
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Reservation r = reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if(!Objects.equals(r.getShop().getManager().getId(), user.getId()))
+        if (!Objects.equals(r.getShop().getManager().getId(), user.getId()))
             throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
         if (r.getReservationStatus() != ReservationStatus.WAITING_FOR_APPROVAL)
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_WAITING_APPROVAL);
@@ -106,11 +107,11 @@ public class ManagerService {
     public Reservation rejectReservation(String token, Long reservationId) {
         UserVo user = provider.getUserVo(token);
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
-        Reservation r= reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+        Reservation r = reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if(Objects.equals(r.getShop().getManager().getId(), user.getId()))
+        if (Objects.equals(r.getShop().getManager().getId(), user.getId()))
             throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
-        if (r.getReservationStatus()!=ReservationStatus.WAITING_FOR_APPROVAL)
+        if (r.getReservationStatus() != ReservationStatus.WAITING_FOR_APPROVAL)
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_WAITING_APPROVAL);
 
         r.setReservationStatus(ReservationStatus.RESERVATION_REJECTED);
@@ -123,11 +124,11 @@ public class ManagerService {
 
     public List<String> getReservation(String token) throws JsonProcessingException { //매니저 string token 으로 권한검사 이후 자신의 상점들 에대한 reservation 반환
 
-        UserVo user= provider.getUserVo(token);
+        UserVo user = provider.getUserVo(token);
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
-        var list=reservationRepository.findByShop_Manager_Id(m.getId());
-        List<String> result=new ArrayList<>();
-        for(Reservation r:list){
+        var list = reservationRepository.findByShop_Manager_Id(m.getId());
+        List<String> result = new ArrayList<>();
+        for (Reservation r : list) {
             result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));
         }
         return result;
@@ -135,15 +136,15 @@ public class ManagerService {
     }
 
     public Object getReservation(String token, String reservationStatus) throws JsonProcessingException {
-        UserVo user= provider.getUserVo(token);
+        UserVo user = provider.getUserVo(token);
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
-        ReservationStatus rs=ReservationStatus.valueOfText(reservationStatus);
-        if(rs==null){
+        ReservationStatus rs = ReservationStatus.valueOfText(reservationStatus);
+        if (rs == null) {
             throw new CustomException(ErrorCode.WRONG_VARIABLE);
         }
-        List<Reservation> list=reservationRepository.findByShop_Manager_Id(m.getId()).stream().filter(reservation -> reservation.getReservationStatus().equals(rs)).collect(Collectors.toList());
-        List<String> result=new ArrayList<>();
-        for(Reservation r:list){
+        List<Reservation> list = reservationRepository.findByShop_Manager_Id(m.getId()).stream().filter(reservation -> reservation.getReservationStatus().equals(rs)).collect(Collectors.toList());
+        List<String> result = new ArrayList<>();
+        for (Reservation r : list) {
             result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));
         }
         return result;

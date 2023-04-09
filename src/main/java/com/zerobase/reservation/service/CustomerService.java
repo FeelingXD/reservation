@@ -66,7 +66,7 @@ public class CustomerService {
                 .filter(customer -> customer.getEmail().equals(user.getEmail()))
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
 
-        List<String> result=new ArrayList<>();
+        List<String> result = new ArrayList<>();
         for (Reservation r : reservationRepository.findByCustomer(c)) {
             result.add(mapper.writeValueAsString(ReservationDto.toDto(r)));
         }
