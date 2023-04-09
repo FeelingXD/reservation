@@ -19,12 +19,12 @@ Content-Type: application/json
 }
 
 ###make reservation
-POST http://localhost:8080/customer/reservation/1
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgwODU2NDg5LCJleHAiOjE2ODA5NDI4ODl9.MEqiGpy_3DA33t4RAHN2_hTUOhzu3cPMa0Sz2dl1YOc
+POST http://localhost:8080/customer/reservation/4
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMDY1Mzg0LCJleHAiOjE2ODExNTE3ODR9.nJiQCAHzn7L62ZTmb8gDyHLwNxTE3VHuK69gR_Gy50E
 Content-Type: application/json
 
 {
-  "reservateAt": "23.01.11 11:11"
+  "reservateAt": "23.05.11 11:11"
 }
 
 
@@ -52,25 +52,59 @@ Content-Type: application/json
 ###joinpartner
 POST http://localhost:8080/manager/joinpartner
 Content-Type: application/json
-X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDg1NTU4NywiZXhwIjoxNjgwOTQxOTg3fQ.o06L8YmPksxZFEK6Qxtx_LYw7Tc_2bzg69Z_YCZqVtY
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NDk0MywiZXhwIjoxNjgxMTUxMzQzfQ.RfcnnFC5RCrd3N6sHIZXacIL0BRIL76YlhIl_B6l924
 
 ### add shop
 
-POST http://localhost:8080/manager/shop/add
+POST http://localhost:8080/shop/add
 Content-Type: application/json
-X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDg1NTU4NywiZXhwIjoxNjgwOTQxOTg3fQ.o06L8YmPksxZFEK6Qxtx_LYw7Tc_2bzg69Z_YCZqVtY
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NDk0MywiZXhwIjoxNjgxMTUxMzQzfQ.RfcnnFC5RCrd3N6sHIZXacIL0BRIL76YlhIl_B6l924
 
 {
-  "location": "string",
-  "name": "string",
-  "phone": "string"
+  "location": "경기 고양시",
+  "name": "테스트 상점1",
+  "phone": "테스트 상점1번호"
 }
 
 ### delete shop
 
-DELETE  http://localhost:8080/manager/shop/delete/2
+DELETE  http://localhost:8080/shop/delete/2
 X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXQzJyQlpkZE1Dem5yRUdSMDM2SU9aSnV4Ym5vSzdrU1FMS2I4ckZzOVBvPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDc4OTY2OSwiZXhwIjoxNjgwODc2MDY5fQ.0AhHhuh01SqATqeyLRLbhQf45kGsArlchQR-gokHAKA
 
 
-###
-GET http://localhost:8080/test/api/v1/easteregg
+### getReservation(manager) 모든 예약 가져오기
+GET http://localhost:8080/manager/reservation
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NTYzNiwiZXhwIjoxNjgxMTUyMDM2fQ.I4ahCmQOprE_Pk7UAFixbi9XqjTebNNsemc2mfQZ_N0
+
+
+### getReservation(manager) 예약 확인
+POST http://localhost:8080/manager/reservation/approve/1
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NTYzNiwiZXhwIjoxNjgxMTUyMDM2fQ.I4ahCmQOprE_Pk7UAFixbi9XqjTebNNsemc2mfQZ_N0
+
+### getReservation(manager) 예약 거절
+POST http://localhost:8080/manager/reservation/reject/
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NTYzNiwiZXhwIjoxNjgxMTUyMDM2fQ.I4ahCmQOprE_Pk7UAFixbi9XqjTebNNsemc2mfQZ_N0
+
+### kiosk manager add
+POST http://localhost:8080/kiosk/add/4
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NTYzNiwiZXhwIjoxNjgxMTUyMDM2fQ.I4ahCmQOprE_Pk7UAFixbi9XqjTebNNsemc2mfQZ_N0
+
+### kiosk controll user check
+POST http://localhost:8080/kiosk/check/1
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTA2NTYzNiwiZXhwIjoxNjgxMTUyMDM2fQ.I4ahCmQOprE_Pk7UAFixbi9XqjTebNNsemc2mfQZ_N0
+Content-Type: application/json
+
+{
+  "customer_phone": "string"
+}
+
+### write review
+POST http://localhost:8080/review/write/1
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMDY1Mzg0LCJleHAiOjE2ODExNTE3ODR9.nJiQCAHzn7L62ZTmb8gDyHLwNxTE3VHuK69gR_Gy50E
+Content-Type: application/json
+
+{
+  "rate": 1.0,
+  "subject": "테스트 리뷰 제목",
+  "text": " 별로인가."
+}
