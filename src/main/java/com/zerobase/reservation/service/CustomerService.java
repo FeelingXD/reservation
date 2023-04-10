@@ -81,7 +81,7 @@ public class CustomerService {
     }
 
 
-    public void deleteReservation(String token, Long reservation_id, ReservationInputForm dto) {
+    public void deleteReservation(String token, Long reservation_id) {
         UserVo user = provider.getUserVo(token);
         Customer c = customerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Reservation r= reservationRepository.findById(reservation_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));

@@ -58,7 +58,7 @@ public class ManagerController {
 
     @ApiOperation(value = "매니저 예약 승인"
             ,notes ="매니저 권한으로 해당 예약번호의 예약을 승인함" )
-    @PostMapping("/reservation/approve/{reservation_id}") //예약 승인
+    @PutMapping("/reservation/approve/{reservation_id}") //예약 승인
     public ResponseEntity<String> approveReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
         managerService.approveReservation(token, reservation_id);
         return ResponseEntity.ok().body("승인되었습니다.");
@@ -66,7 +66,7 @@ public class ManagerController {
 
     @ApiOperation(value = "매니저 예약 거절"
             ,notes ="매니저 권한으로 해당 예약번호의 예약을 거절함" )
-    @PostMapping("/reservation/reject/{reservation_id}") //예약 거절
+    @PutMapping("/reservation/reject/{reservation_id}") //예약 거절
     public ResponseEntity<String> rejectReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
         managerService.rejectReservation(token, reservation_id);
         return ResponseEntity.ok().body("거절되었습니다..");
