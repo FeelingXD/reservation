@@ -135,7 +135,7 @@ public class ManagerService {
 
     }
 
-    public Object getReservation(String token, String reservationStatus) throws JsonProcessingException {
+    public List<String>  getReservation(String token, String reservationStatus) throws JsonProcessingException {
         UserVo user = provider.getUserVo(token);
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         ReservationStatus rs = ReservationStatus.valueOfText(reservationStatus);

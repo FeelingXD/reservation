@@ -25,7 +25,7 @@ public class ShopController {
     }
 
     @GetMapping("/{sort_type}")
-    public ResponseEntity getSortedShop(@PathVariable String sort_type) {
+    public ResponseEntity<List<ShopDto.Simple>> getSortedShop(@PathVariable String sort_type) {
         return ResponseEntity.ok().body(shopService.getSortedShop(sort_type));
     }
 

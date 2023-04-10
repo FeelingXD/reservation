@@ -22,7 +22,7 @@ public class ReviewService {
     private final ReservationRepository reservationRepository;
     private final ReviewRepository reviewRepository;
 
-    public void writeReview(String token, Long reservation_id, ReviewInputForm form) {
+    public Review writeReview(String token, Long reservation_id, ReviewInputForm form) {
         /*
          * todo: token 검사
          *  reservation 가져온후 reservation status=> use_complete 인지확인 사용해야 리뷰작성가능
@@ -53,6 +53,6 @@ public class ReviewService {
                 .shop(r.getShop())
                 .build();
 
-        reviewRepository.save(review);
+        return reviewRepository.save(review);
     }
 }

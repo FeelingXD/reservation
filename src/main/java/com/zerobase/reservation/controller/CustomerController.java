@@ -21,7 +21,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/signup")// 회원가입
-    public ResponseEntity customerSignUp(@RequestBody SignUpForm form) {
+    public ResponseEntity<String> customerSignUp(@RequestBody SignUpForm form) {
         customerService.signUp(form);
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }

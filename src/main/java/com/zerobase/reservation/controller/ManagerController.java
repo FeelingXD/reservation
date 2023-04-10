@@ -18,7 +18,7 @@ public class ManagerController {
     private final ManagerService managerService;
 
     @PostMapping("/signup")// 회원가입
-    public ResponseEntity managerSignUp(@RequestBody SignUpForm form) {
+    public ResponseEntity<String> managerSignUp(@RequestBody SignUpForm form) {
         managerService.signUp(form);
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }
@@ -41,21 +41,21 @@ public class ManagerController {
     }
 
     @GetMapping("/reservation/{reservation_status}")// 매니저가 처리할수있는 모든예약확인
-    public ResponseEntity getReservation(@RequestHeader(name = TOKEN_HEADER) String token, String reservationStatus) throws JsonProcessingException {
+    public ResponseEntity<List<String>> getReservation(@RequestHeader(name = TOKEN_HEADER) String token, String reservationStatus) throws JsonProcessingException {
         var result = managerService.getReservation(token, reservationStatus);
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/reservation/approve/{reservation_id}") //예약 승인
-    public ResponseEntity approveReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
+    public ResponseEntity<String> approveReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
         managerService.approveReservation(token, reservation_id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("승인되었습니다.");
     }
 
     @PostMapping("/reservation/reject/{reservation_id}") //예약 거절
-    public ResponseEntity rejectReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
+    public ResponseEntity<String> rejectReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
         managerService.rejectReservation(token, reservation_id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("거절되었습니다..");
     }
 
 }
