@@ -20,6 +20,8 @@ import com.zerobase.reservation.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +47,7 @@ public class CustomerService {
         return provider.createToken(customer.getEmail(), customer.getId(), TYPE);
     }
 
-    public Reservation reservateShop(String token, Long shop_id, ReservationInputForm dto) { //shopId 를 통해 reservation 생성
+    public Reservation makeReservation(String token, Long shop_id, ReservationInputForm dto) { //shopId 를 통해 reservation 생성
         UserVo user = provider.getUserVo(token);
         Customer c = customerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Shop s = shopRepository.findById(shop_id).stream().findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_SHOP));
@@ -79,4 +81,14 @@ public class CustomerService {
     }
 
 
+    public void deleteReservation(String token, Long reservation_id, ReservationInputForm dto) {
+        UserVo user = provider.getUserVo(token);
+        Customer c = customerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        Reservation r= reservationRepository.findById(reservation_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+        if(r.getReservationAt().truncatedTo(ChronoUnit.DAYS).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))){
+            throw new CustomException(ErrorCode.SAME_DAY_CANCELLATION);
+        }
+
+        reservationRepository.delete(r);
+    }
 }
