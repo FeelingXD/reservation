@@ -21,7 +21,7 @@ public class KioskController {
     }
 
     @PostMapping("/check/{kiosk_id}")
-    public String checkReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long kiosk_id, @RequestBody KioskInputForm form) {
+    public String checkReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long kiosk_id, @RequestBody KioskInputForm form) { // 손님 예약확인 (키오스크 업무)
         kioskService.checkReservation(kiosk_id, form);
         return "사용가능합니다.";
     }

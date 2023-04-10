@@ -40,7 +40,7 @@ public class ManagerController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping("/reservation/{reservation_status}")// 매니저가 처리할수있는 모든예약확인
+    @GetMapping("/reservation/{reservation_status}")// 매니저가 처리할수있는 모든예약확인 reservation_status 값에해당하는 예약만 확인가능
     public ResponseEntity<List<String>> getReservation(@RequestHeader(name = TOKEN_HEADER) String token, String reservationStatus) throws JsonProcessingException {
         var result = managerService.getReservation(token, reservationStatus);
         return ResponseEntity.ok().body(result);

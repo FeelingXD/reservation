@@ -34,7 +34,7 @@ public class CustomerController {
 
 
     @PostMapping("/reservation/{shop_id}")
-    public ResponseEntity<String> reservateShop(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable(name = "shop_id") Long shop_id, @RequestBody ReservationInputForm dto) {
+    public ResponseEntity<String> reservateShop(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable(name = "shop_id") Long shop_id, @RequestBody ReservationInputForm dto) { // 예약하기
         customerService.reservateShop(token, shop_id, dto);
         return ResponseEntity.ok().body("예약 되었습니다.");
     }
