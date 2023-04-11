@@ -9,8 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 public class SignInForm {
-    @ApiModelProperty(notes = "이메일(사용자id)" , example = "testAcount@naver.com")
+    @ApiModelProperty(notes = "이메일(사용자id)", example = "testAcount@naver.com")
     String email;
-    @ApiModelProperty(notes = "비밀번호" , example = "examplepassWord")
+    @ApiModelProperty(notes = "비밀번호", example = "examplepassWord")
     String password;
 }

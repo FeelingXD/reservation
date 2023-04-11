@@ -10,7 +10,6 @@ import com.zerobase.reservation.model.entity.Shop;
 import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import com.zerobase.reservation.model.form.KioskInputForm;
 import com.zerobase.reservation.repository.KioskRepository;
-import com.zerobase.reservation.repository.ManagerRepository;
 import com.zerobase.reservation.repository.ReservationRepository;
 import com.zerobase.reservation.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;

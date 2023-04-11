@@ -19,21 +19,22 @@ public class ManagerController {
     private final ManagerService managerService;
 
     @ApiOperation(value = "매니저 회원가입"
-            ,notes ="회원가입 폼으로 회원가입을함" )
+            , notes = "회원가입 폼으로 회원가입을함")
     @PostMapping("/signup")// 회원가입
     public ResponseEntity<String> managerSignUp(@RequestBody SignUpForm form) {
         managerService.signUp(form);
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }
+
     @ApiOperation(value = "매니저 로그인"
-            ,notes ="이메일과 비밀번호로 로그인하며 토큰을 반환" )
+            , notes = "이메일과 비밀번호로 로그인하며 토큰을 반환")
     @PostMapping("/signin")//  로그인
     public ResponseEntity<String> managerSignIn(@RequestBody SignInForm form) {
         return ResponseEntity.ok(managerService.signIn(form)); //return login token
     }
 
     @ApiOperation(value = "매니저 파트너 가입"
-            ,notes ="별다른 제약조건은 없으며 토큰으로 유효성검사를 통해 해당매니저에게 파트너권한을줌 " )
+            , notes = "별다른 제약조건은 없으며 토큰으로 유효성검사를 통해 해당매니저에게 파트너권한을줌 ")
     @PostMapping("/joinpartner") //파트너쉽 가입
     public ResponseEntity<String> joinPartnerShip(@RequestHeader(name = TOKEN_HEADER) String token) {
         managerService.joinPartner(token);
@@ -41,7 +42,7 @@ public class ManagerController {
     }
 
     @ApiOperation(value = "매니저 예약 조회"
-            ,notes ="매니저 예약 조회 모든 값을 조회 " )
+            , notes = "매니저 예약 조회 모든 값을 조회 ")
     @GetMapping("/reservation")// 매니저가 처리할수있는 모든예약확인
     public ResponseEntity<List<String>> getReservation(@RequestHeader(name = TOKEN_HEADER) String token) throws JsonProcessingException {
         var result = managerService.getReservation(token);
@@ -49,7 +50,7 @@ public class ManagerController {
     }
 
     @ApiOperation(value = "매니저 예약 조회"
-            ,notes ="매니저 예약조회 {reservation_status} 의 상태값에 해당하는 예약만 조회함 " )
+            , notes = "매니저 예약조회 {reservation_status} 의 상태값에 해당하는 예약만 조회함 ")
     @GetMapping("/reservation/{reservation_status}")// 매니저가 처리할수있는 모든예약확인 reservation_status 값에해당하는 예약만 확인가능
     public ResponseEntity<List<String>> getReservation(@RequestHeader(name = TOKEN_HEADER) String token, String reservationStatus) throws JsonProcessingException {
         var result = managerService.getReservation(token, reservationStatus);
@@ -57,7 +58,7 @@ public class ManagerController {
     }
 
     @ApiOperation(value = "매니저 예약 승인"
-            ,notes ="매니저 권한으로 해당 예약번호의 예약을 승인함" )
+            , notes = "매니저 권한으로 해당 예약번호의 예약을 승인함")
     @PutMapping("/reservation/approve/{reservation_id}") //예약 승인
     public ResponseEntity<String> approveReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
         managerService.approveReservation(token, reservation_id);
@@ -65,7 +66,7 @@ public class ManagerController {
     }
 
     @ApiOperation(value = "매니저 예약 거절"
-            ,notes ="매니저 권한으로 해당 예약번호의 예약을 거절함" )
+            , notes = "매니저 권한으로 해당 예약번호의 예약을 거절함")
     @PutMapping("/reservation/reject/{reservation_id}") //예약 거절
     public ResponseEntity<String> rejectReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable Long reservation_id) {
         managerService.rejectReservation(token, reservation_id);

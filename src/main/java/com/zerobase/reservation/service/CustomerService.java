@@ -85,8 +85,8 @@ public class CustomerService {
     public void cancelReservation(String token, Long reservation_id) {
         UserVo user = provider.getUserVo(token);
         Customer c = customerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
-        Reservation r= reservationRepository.findById(reservation_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
-        if(r.getReservationAt().truncatedTo(ChronoUnit.DAYS).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))){
+        Reservation r = reservationRepository.findById(reservation_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+        if (r.getReservationAt().truncatedTo(ChronoUnit.DAYS).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))) {
             throw new CustomException(ErrorCode.SAME_DAY_CANCELLATION);
         }
         r.setReservationStatus(ReservationStatus.CUSTOMER_CANCEL);

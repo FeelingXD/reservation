@@ -10,13 +10,13 @@ import lombok.*;
 @Getter
 @Setter
 public class ShopInputForm {
-    @ApiModelProperty(notes = "가게이름" , example = "임시가게")
+    @ApiModelProperty(notes = "가게이름", example = "임시가게")
     private String name;
-    @ApiModelProperty(notes = "가게 전화번호" , example = "010-0000-000(String)")
-    
+    @ApiModelProperty(notes = "가게 전화번호", example = "010-0000-000(String)")
+
     private String phone;
-    @ApiModelProperty(notes = "상점 주소" , example = "경기도 고양시 ~~")
-    
+    @ApiModelProperty(notes = "상점 주소", example = "경기도 고양시 ~~")
+
     private String location;
 
     public static Shop toEntity(ShopInputForm dto) {
