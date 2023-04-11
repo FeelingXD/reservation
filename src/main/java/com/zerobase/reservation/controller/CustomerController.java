@@ -46,9 +46,9 @@ public class CustomerController {
     }
     @ApiOperation(value = "고객 예약삭제"
             ,notes ="토큰으로 아이디 유효성검사를하고 예약취소(당일취소는 불가능함)" )
-    @DeleteMapping("/reservation/delete/{shop_id}")
+    @PutMapping("/reservation/delete/{shop_id}")
     public ResponseEntity<String> deleteReservation(@RequestHeader(name = TOKEN_HEADER) String token, @PathVariable(name = "shop_id") Long shop_id, @RequestBody ReservationInputForm dto) { // 예약취소
-        customerService.deleteReservation(token, shop_id);
+        customerService.cancelReservation(token, shop_id);
         return ResponseEntity.ok().body("예약 취소되었습니다.");
     }
 

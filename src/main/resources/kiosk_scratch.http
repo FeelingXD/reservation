@@ -1,0 +1,11 @@
+### kiosk manager add
+POST http://localhost:8080/kiosk/add/1
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTE5NTU1MiwiZXhwIjoxNjgxMjgxOTUyfQ.MpxSllJb1PuOh9TNRTOTO7JKqpJ_4fu7W4DPl_q_QXY
+
+### kiosk controll user check
+POST http://localhost:8080/kiosk/check/1
+Content-Type: application/json
+
+{
+  "customer_phone": "010-0000-0010"
+}

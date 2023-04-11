@@ -1,0 +1,10 @@
+### 리뷰작성
+POST http://localhost:8080/review/write/1
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMTk3NjM4LCJleHAiOjE2ODEyODQwMzh9.ypLbUWePP_Kcuv-cUHMP1LkIEjo9WCQoyi_gsMUpmdg
+
+{
+  "rate": "1.0",
+  "subject": "그럴듯한 제목",
+  "text": "그럴듯한 본문"
+}

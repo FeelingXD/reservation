@@ -24,6 +24,7 @@ public class ShopInputForm {
                 .name(dto.getName())
                 .phone(dto.getPhone())
                 .location(dto.getLocation())
+                .rate(0.0)
                 .build();
     }
 }

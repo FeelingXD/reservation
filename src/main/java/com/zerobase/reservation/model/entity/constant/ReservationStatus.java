@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 public enum ReservationStatus {
     WAITING_FOR_APPROVAL("승인 대기"),
     RESERVATION_COMPLETE("예약 완료"),
+    CUSTOMER_CANCEL("예약 취소 됨"),
     RESERVATION_REJECTED("예약 거부됨"),
 
     USE_COMPLETE("사용 완료"),

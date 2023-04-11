@@ -1,36 +1,4 @@
-### customer signup
-POST http://localhost:8080/customer/signup
-Content-Type: application/json
 
-{
-  "email": "testCustomer",
-  "password": "1234",
-  "name": "string",
-  "phone": "string"
-}
-
-### customer signin
-POST http://localhost:8080/customer/signin
-Content-Type: application/json
-
-{
-  "email": "testCustomer",
-  "password": "1234"
-}
-
-###get reservation
-GET http://localhost:8080/customer/reservation/
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMDY1Mzg0LCJleHAiOjE2ODExNTE3ODR9.nJiQCAHzn7L62ZTmb8gDyHLwNxTE3VHuK69gR_Gy50E
-
-
-###make reservation
-POST http://localhost:8080/customer/reservation/4
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMDY1Mzg0LCJleHAiOjE2ODExNTE3ODR9.nJiQCAHzn7L62ZTmb8gDyHLwNxTE3VHuK69gR_Gy50E
-Content-Type: application/json
-
-{
-  "reservateAt": "23.05.11 11:11"
-}
 
 
 ###manager signup

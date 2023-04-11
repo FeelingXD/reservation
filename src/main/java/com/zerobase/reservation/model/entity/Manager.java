@@ -19,11 +19,12 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String email;
     private String password;
 
     private String name;
-    @Column
+    @Column(unique = true)
     private String phone;
 
 

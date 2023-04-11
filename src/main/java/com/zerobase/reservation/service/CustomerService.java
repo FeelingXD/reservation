@@ -10,6 +10,7 @@ import com.zerobase.reservation.model.dto.ReservationDto;
 import com.zerobase.reservation.model.entity.Customer;
 import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.model.entity.Shop;
+import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import com.zerobase.reservation.model.entity.constant.UserType;
 import com.zerobase.reservation.model.form.ReservationInputForm;
 import com.zerobase.reservation.model.form.SignInForm;
@@ -81,14 +82,14 @@ public class CustomerService {
     }
 
 
-    public void deleteReservation(String token, Long reservation_id) {
+    public void cancelReservation(String token, Long reservation_id) {
         UserVo user = provider.getUserVo(token);
         Customer c = customerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Reservation r= reservationRepository.findById(reservation_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
         if(r.getReservationAt().truncatedTo(ChronoUnit.DAYS).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))){
             throw new CustomException(ErrorCode.SAME_DAY_CANCELLATION);
         }
-
-        reservationRepository.delete(r);
+        r.setReservationStatus(ReservationStatus.CUSTOMER_CANCEL);
+        reservationRepository.save(r);
     }
 }

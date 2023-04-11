@@ -1,0 +1,57 @@
+###manager signup
+POST http://localhost:8080/manager/signup
+Content-Type: application/json
+Accept: text/plain;charset=UTF-8
+
+{
+  "email": "testmanager@gmail.com",
+  "name": "매니저",
+  "password": "1234",
+  "phone": "string2"
+}
+
+###manager signin
+POST http://localhost:8080/manager/signin
+Content-Type: application/json
+
+{
+  "email": "testmanager@gmail.com",
+  "password": "1234"
+}
+
+
+###joinpartner
+POST http://localhost:8080/manager/joinpartner
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTE5NTU1MiwiZXhwIjoxNjgxMjgxOTUyfQ.MpxSllJb1PuOh9TNRTOTO7JKqpJ_4fu7W4DPl_q_QXY
+Accept: text/plain;charset=UTF-8
+### add shop
+
+POST http://localhost:8080/shop/add
+Content-Type: application/json;charset=UTF-8
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTE5NTU1MiwiZXhwIjoxNjgxMjgxOTUyfQ.MpxSllJb1PuOh9TNRTOTO7JKqpJ_4fu7W4DPl_q_QXY
+
+{
+  "location": "경기 고양시",
+  "name": "테스트 상점1",
+  "phone": "테스트 상점1번호"
+}
+
+### delete shop
+DELETE  http://localhost:8080/shop/delete/2
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXQzJyQlpkZE1Dem5yRUdSMDM2SU9aSnV4Ym5vSzdrU1FMS2I4ckZzOVBvPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MDc4OTY2OSwiZXhwIjoxNjgwODc2MDY5fQ.0AhHhuh01SqATqeyLRLbhQf45kGsArlchQR-gokHAKA
+
+
+### getReservation(manager) 모든 예약 가져오기
+GET http://localhost:8080/manager/reservation
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTE5NTU1MiwiZXhwIjoxNjgxMjgxOTUyfQ.MpxSllJb1PuOh9TNRTOTO7JKqpJ_4fu7W4DPl_q_QXY
+
+
+
+### getReservation(manager) 예약 승인
+PUT http://localhost:8080/manager/reservation/approve/1
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTE5NTU1MiwiZXhwIjoxNjgxMjgxOTUyfQ.MpxSllJb1PuOh9TNRTOTO7JKqpJ_4fu7W4DPl_q_QXY
+
+### getReservation(manager) 예약 거절
+PUT http://localhost:8080/manager/reservation/reject/
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIvRy9kcGJsamU4TzZualp1RVFTNVd2RnFCc21GYmZ6eHNDTFViay9nU0pzPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiTUFOQUdFUiIsImlhdCI6MTY4MTE5NTU1MiwiZXhwIjoxNjgxMjgxOTUyfQ.MpxSllJb1PuOh9TNRTOTO7JKqpJ_4fu7W4DPl_q_QXY

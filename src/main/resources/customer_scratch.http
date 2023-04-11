@@ -1,0 +1,34 @@
+### customer signup
+POST http://localhost:8080/customer/signup
+Content-Type: application/json;charset=UTF-8
+
+{
+  "email": "testCustomer",
+  "password": "1234",
+  "name": "손님",
+  "phone": "010-0000-0010"
+}
+
+### customer signin
+POST http://localhost:8080/customer/signin
+Content-Type: application/json
+
+{
+  "email": "testCustomer",
+  "password": "1234"
+}
+
+###get reservation 고객 예약확인
+GET http://localhost:8080/customer/reservation/
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMTk3NjM4LCJleHAiOjE2ODEyODQwMzh9.ypLbUWePP_Kcuv-cUHMP1LkIEjo9WCQoyi_gsMUpmdg
+
+
+###make reservation
+POST http://localhost:8080/customer/reservation/make/1
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMTk3NjM4LCJleHAiOjE2ODEyODQwMzh9.ypLbUWePP_Kcuv-cUHMP1LkIEjo9WCQoyi_gsMUpmdg
+Content-Type: application/json
+Accept: text/plain;charset=UTF-8
+
+{
+  "reservateAt": "23.05.11 11:11"
+}

@@ -23,7 +23,6 @@ import java.util.Objects;
 @Service
 public class KioskService {
     private final ReservationRepository reservationRepository;
-    private final ManagerRepository managerRepository;
     private final ShopRepository shopRepository;
     private final KioskRepository kioskRepository;
     private final JwtAuthenticationProvider provider;
@@ -41,7 +40,7 @@ public class KioskService {
     public Reservation checkReservation(Long kiosk_id, KioskInputForm form) { // 예약자 전화번호로 예약 승인하기
         var k = kioskRepository.findById(kiosk_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_KIOSK));
         var r = reservationRepository.findByCustomer_Phone(form.getCustomer_phone())
-                .stream().findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+                .stream().filter(reservation -> reservation.getReservationStatus().equals(ReservationStatus.RESERVATION_COMPLETE)).findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
         if (!Objects.equals(r.getShop().getId(), k.getShop().getId())) {
             throw new CustomException(ErrorCode.KIOSK_UNMATCHED_SHOP);
