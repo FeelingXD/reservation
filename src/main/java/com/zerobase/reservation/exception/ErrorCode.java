@@ -10,6 +10,8 @@ public enum ErrorCode {
     // 로그인 관련
     NOT_FOUND_USER(HttpStatus.BAD_REQUEST, "해당정보의 유저를 찾을수 없습니다."),
     WRONG_VARIABLE(HttpStatus.BAD_REQUEST, "잘못된 요청값 입니다."),
+    //입력폼 관련
+    INVALID_INPUT_VALUE(HttpStatus.BAD_REQUEST, "올바르지 않는 입력값 입니다. "),
 
     // 매니저 관련
     NOT_FOUND_SHOP(HttpStatus.BAD_REQUEST, "해당정보의 가게를 찾을수 없습니다."),
@@ -30,6 +32,7 @@ public enum ErrorCode {
 
     NOT_FOUND_RESERVATION(HttpStatus.BAD_REQUEST, "해당 예약을 찾을수없습니다."),
     KIOSK_UNMATCHED_SHOP(HttpStatus.BAD_REQUEST, "키오스크정보와 예약상점간 정보가 일치하지않습니다. "),
+
     SAME_DAY_CANCELLATION(HttpStatus.BAD_REQUEST, "당일 취소는 불가능합니다. ");
 
     private final HttpStatus httpStatus;

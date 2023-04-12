@@ -7,6 +7,7 @@ import com.zerobase.reservation.service.ManagerService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ManagerController {
     @ApiOperation(value = "매니저 회원가입"
             , notes = "회원가입 폼으로 회원가입을함")
     @PostMapping("/signup")// 회원가입
-    public ResponseEntity<String> managerSignUp(@RequestBody SignUpForm form) {
+    public ResponseEntity<String> managerSignUp(@Validated @RequestBody SignUpForm form) {
         managerService.signUp(form);
         return ResponseEntity.ok().body("가입이완료되었습니다.");
     }
@@ -29,7 +30,7 @@ public class ManagerController {
     @ApiOperation(value = "매니저 로그인"
             , notes = "이메일과 비밀번호로 로그인하며 토큰을 반환")
     @PostMapping("/signin")//  로그인
-    public ResponseEntity<String> managerSignIn(@RequestBody SignInForm form) {
+    public ResponseEntity<String> managerSignIn(@Validated @RequestBody SignInForm form) {
         return ResponseEntity.ok(managerService.signIn(form)); //return login token
     }
 

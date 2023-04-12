@@ -4,6 +4,7 @@ import com.zerobase.reservation.model.form.KioskInputForm;
 import com.zerobase.reservation.service.KioskService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +27,7 @@ public class KioskController {
     @ApiOperation(value = "고객 키오스크 사용"
             , notes = "키오스크 아이디로 어떤매장인지 확인하고 해당매장에 고객 번호로 예약이 되어있다면 해당예약 사용")
     @PostMapping("/check/{kiosk_id}")
-    public String checkReservation(@PathVariable Long kiosk_id, @RequestBody KioskInputForm form) { // 손님 예약확인 (키오스크 업무)
+    public String checkReservation(@PathVariable Long kiosk_id, @Validated @RequestBody KioskInputForm form) { // 손님 예약확인 (키오스크 업무)
         kioskService.checkReservation(kiosk_id, form);
         return "사용가능합니다.";
     }
