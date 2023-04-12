@@ -7,6 +7,7 @@ import com.zerobase.reservation.service.ShopService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,8 +45,8 @@ public class ShopController {
     @ApiOperation(value = "상점 추가"
             , notes = "매니저 토큰으로 유효성검사 상점의 추가 ")
     @PostMapping("/add")
-    public ResponseEntity<String> addShop(@RequestHeader(name = TOKEN_HEADER) String token, @RequestBody ShopInputForm dto) { //매니저 상점 추가
-        managerService.addShop(token, dto);
+    public ResponseEntity<String> addShop(@RequestHeader(name = TOKEN_HEADER) String token, @Validated @RequestBody ShopInputForm form) { //매니저 상점 추가
+        managerService.addShop(token, form);
         return ResponseEntity.ok().body("추가 되었습니다.");
     }
 

@@ -5,6 +5,7 @@ import com.zerobase.reservation.model.entity.constant.ReservationStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class ReservationInputForm {
     @ApiModelProperty(notes = "예약시간 ", example = "yy.MM.dd HH:mm")
+    @NotNull
     String reservateAt;
 
     public static Reservation toEntity(ReservationInputForm dto) {
