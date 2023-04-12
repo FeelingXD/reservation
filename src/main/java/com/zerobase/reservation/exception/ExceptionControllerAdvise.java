@@ -23,8 +23,9 @@ public class ExceptionControllerAdvise {
                         .code(e.getErrorCode().toString())
                         .build());
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<CustomValidationException.Response> handleValidationException(MethodArgumentNotValidException e){
+    public ResponseEntity<CustomValidationException.Response> handleValidationException(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
         String errorMessage = fieldErrors.stream()
@@ -32,9 +33,9 @@ public class ExceptionControllerAdvise {
                 .collect(Collectors.joining(","));
 
         return ResponseEntity
-                        .status(HttpStatus.BAD_REQUEST)
-                        .body(CustomValidationException.Response.builder()
-                                .message(errorMessage)
-                                .build());
+                .status(HttpStatus.BAD_REQUEST)
+                .body(CustomValidationException.Response.builder()
+                        .message(errorMessage)
+                        .build());
     }
 }

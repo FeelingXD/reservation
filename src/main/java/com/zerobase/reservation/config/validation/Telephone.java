@@ -11,6 +11,8 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = TelephoneValidator.class)
 public @interface Telephone {
     String message() default "전화번호 형식이 일치하지 않습니다.";
+
     Class[] groups() default {};
+
     Class[] payload() default {};
 }
