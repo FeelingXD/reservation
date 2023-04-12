@@ -14,6 +14,9 @@ swagger 로 api명세를 작성하였습니다. 실행후 서버주소/swagger-u
 ## 사용라이브러리📚
 
 - Springboot
+- Springboot-starter-web
+- Springboot-starter-data-jpa
+- SpringBoot-starter-validation
 - lombok
 - jjwt -lib (json web token 구현)
 - swagger
