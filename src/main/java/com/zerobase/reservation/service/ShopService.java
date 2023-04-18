@@ -4,7 +4,7 @@ import com.zerobase.reservation.exception.CustomException;
 import com.zerobase.reservation.exception.ErrorCode;
 import com.zerobase.reservation.model.dto.ShopDto;
 import com.zerobase.reservation.model.entity.Shop;
-import com.zerobase.reservation.model.entity.constant.SortType;
+import com.zerobase.reservation.model.entity.constraint.SortType;
 import com.zerobase.reservation.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;

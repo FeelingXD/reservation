@@ -7,7 +7,7 @@ import com.zerobase.reservation.model.UserVo;
 import com.zerobase.reservation.model.entity.Kiosk;
 import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.model.entity.Shop;
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
+import com.zerobase.reservation.model.entity.constraint.ReservationStatus;
 import com.zerobase.reservation.model.form.KioskInputForm;
 import com.zerobase.reservation.repository.KioskRepository;
 import com.zerobase.reservation.repository.ReservationRepository;

@@ -1,7 +1,7 @@
 package com.zerobase.reservation.model.dto;
 
 import com.zerobase.reservation.model.entity.Reservation;
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
+import com.zerobase.reservation.model.entity.constraint.ReservationStatus;
 import lombok.Builder;
 import lombok.Data;
 

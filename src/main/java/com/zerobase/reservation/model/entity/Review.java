@@ -1,6 +1,6 @@
 package com.zerobase.reservation.model.entity;
 
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
+import com.zerobase.reservation.model.entity.constraint.ReservationStatus;
 import lombok.*;
 
 import javax.persistence.*;
