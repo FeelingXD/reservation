@@ -1,4 +1,4 @@
-package com.zerobase.reservation.model.entity.constant;
+package com.zerobase.reservation.model.entity.constraint;
 
 import lombok.Getter;
 

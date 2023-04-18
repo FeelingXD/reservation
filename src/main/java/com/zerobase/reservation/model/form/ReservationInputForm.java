@@ -1,7 +1,7 @@
 package com.zerobase.reservation.model.form;
 
 import com.zerobase.reservation.model.entity.Reservation;
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
+import com.zerobase.reservation.model.entity.constraint.ReservationStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 

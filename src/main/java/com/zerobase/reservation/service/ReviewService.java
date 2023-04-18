@@ -6,7 +6,7 @@ import com.zerobase.reservation.jwt.JwtAuthenticationProvider;
 import com.zerobase.reservation.model.UserVo;
 import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.model.entity.Review;
-import com.zerobase.reservation.model.entity.constant.ReservationStatus;
+import com.zerobase.reservation.model.entity.constraint.ReservationStatus;
 import com.zerobase.reservation.model.form.ReviewInputForm;
 import com.zerobase.reservation.repository.ReservationRepository;
 import com.zerobase.reservation.repository.ReviewRepository;
@@ -22,17 +22,7 @@ public class ReviewService {
     private final ReservationRepository reservationRepository;
     private final ReviewRepository reviewRepository;
 
-    public Review writeReview(String token, Long reservation_id, ReviewInputForm form) {
-        /*
-         * todo: token 검사
-         *  reservation 가져온후 reservation status=> use_complete 인지확인 사용해야 리뷰작성가능
-         *  리뷰당 한건만 작성가능하기에 reservation id 마다 one to one으로 작성
-         *  form 으로는 제목 내용 점수를 받음
-         *  reservation 의 customer 의 이메일 아이디와 token 으로 유효성 검사 //=> 작성 가능여부 판별
-         *  reservation 의 status 검사
-         *  작성이후 reservation 의 status 를 review로 바꿀것
-         *
-         * */
+    public Review writeReview(String token, Long reservation_id, ReviewInputForm form) { //리뷰 작성
 
         UserVo user = provider.getUserVo(token);
         Reservation r = new ArrayList<>(reservationRepository.findByIdAndCustomer_Email(reservation_id, user.getEmail())).get(0);

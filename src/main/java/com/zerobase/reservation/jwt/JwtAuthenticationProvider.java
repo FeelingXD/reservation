@@ -1,7 +1,7 @@
 package com.zerobase.reservation.jwt;
 
 import com.zerobase.reservation.model.UserVo;
-import com.zerobase.reservation.model.entity.constant.UserType;
+import com.zerobase.reservation.model.entity.constraint.UserType;
 import com.zerobase.reservation.util.Aes256Util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
