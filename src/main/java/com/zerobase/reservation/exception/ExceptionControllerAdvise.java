@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ExceptionControllerAdvise {
 
     @ExceptionHandler(CustomException.class)
-    public ResponseEntity<CustomException.CustomExceptionResponse> customExceptionResponseEntity(CustomException e) {
+    public ResponseEntity<CustomException.CustomExceptionResponse> customExceptionResponseEntity(CustomException e) {// Customer Exception heandler
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(CustomException.CustomExceptionResponse.builder()
@@ -24,7 +24,7 @@ public class ExceptionControllerAdvise {
                         .build());
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class) //@Validate exception handler
     public ResponseEntity<CustomValidationException.Response> handleValidationException(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
