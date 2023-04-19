@@ -33,7 +33,8 @@ public enum ErrorCode {
     NOT_FOUND_RESERVATION(HttpStatus.BAD_REQUEST, "해당 예약을 찾을수없습니다."),
     KIOSK_UNMATCHED_SHOP(HttpStatus.BAD_REQUEST, "키오스크정보와 예약상점간 정보가 일치하지않습니다. "),
 
-    SAME_DAY_CANCELLATION(HttpStatus.BAD_REQUEST, "당일 취소는 불가능합니다. ");
+    SAME_DAY_CANCELLATION(HttpStatus.BAD_REQUEST, "당일 취소는 불가능합니다. "),
+    RESERVATION_NOT_SAME_DAY(HttpStatus.BAD_REQUEST, "예약 일자가 다릅니다.");
 
     private final HttpStatus httpStatus;
     private final String detail;

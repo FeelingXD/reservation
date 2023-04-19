@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -41,18 +42,22 @@ public class KioskService {
         var r = reservationRepository.findByCustomer_Phone(form.getCustomer_phone())
                 .stream().filter(reservation -> reservation.getReservationStatus().equals(ReservationStatus.RESERVATION_COMPLETE)).findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if (!Objects.equals(r.getShop().getId(), k.getShop().getId())) {
+        if (!r.getReservationAt().truncatedTo(ChronoUnit.DAYS).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))){// 예약일자가 다른경우
+            throw new CustomException(ErrorCode.RESERVATION_NOT_SAME_DAY);
+        }
+        
+        if (!Objects.equals(r.getShop().getId(), k.getShop().getId())) { //키오스크 사용시 해당상점이 아닌경우
             throw new CustomException(ErrorCode.KIOSK_UNMATCHED_SHOP);
         }
 
-        if (r.getReservationStatus() != ReservationStatus.RESERVATION_COMPLETE) {
+        if (r.getReservationStatus() != ReservationStatus.RESERVATION_COMPLETE) { // 예약 확정이 안되어있는경우
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_RESERVATION_COMPLETE);
         }
 
-        if (LocalDateTime.now().isBefore(r.getReservationAt().minusMinutes(10))) {
+        if (LocalDateTime.now().isBefore(r.getReservationAt().minusMinutes(10))) { // 10분전 체크한경우
             r.setReservationStatus(ReservationStatus.USE_COMPLETE);
             return reservationRepository.save(r);
-        } else {
+        } else { // OVER
             r.setReservationStatus(ReservationStatus.UNAVAILABLE);
             reservationRepository.save(r);
             throw new CustomException(ErrorCode.RESERVATION_TIME_OVER);
