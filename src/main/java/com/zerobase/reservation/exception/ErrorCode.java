@@ -24,6 +24,8 @@ public enum ErrorCode {
     RESERVATION_STATUS_NOT_RESERVATION_COMPLETE(HttpStatus.BAD_REQUEST, "예약상태가 아닙니다."),
     RESERVATION_STATUS_NOT_USE_COMPLETE(HttpStatus.BAD_REQUEST, "해당 예약이 사용완료상태가 아닙니다. 사용완료후 작성해주세요"),
     RESERVATION_TIME_OVER(HttpStatus.BAD_REQUEST, "예약시간 오버로 사용이 불가능합니다."),
+    ALREADY_HAVE_RESERVATION(HttpStatus.BAD_REQUEST, "이미 해당일자에 예약이 있습니다."),
+
     //review 관련
     INVALID_FORM_RATE(HttpStatus.BAD_REQUEST, "1.0부터 5.0점까지 가능합니다."),
 

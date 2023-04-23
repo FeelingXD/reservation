@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,16 @@ public class CustomerService {
         UserVo user = provider.getUserVo(token);
         Customer c = customerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Shop s = shopRepository.findById(shop_id).stream().findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_SHOP));
+
+        reservationRepository.findByCustomer(c).stream()
+                .filter(reservation -> reservation.getShop().equals(s))
+                .filter(reservation -> reservation.getReservationAt().truncatedTo(ChronoUnit.DAYS)
+                        .equals(LocalDateTime.parse(dto.getReservateAt(), DateTimeFormatter.ofPattern("yy.MM.dd HH:mm")).truncatedTo(ChronoUnit.DAYS)))
+                .findAny()
+                .ifPresent(reservation -> {
+                    throw new CustomException(ErrorCode.ALREADY_HAVE_RESERVATION);
+                });
+        
 
         Reservation r = ReservationInputForm.toEntity(dto);
 

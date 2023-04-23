@@ -2,6 +2,7 @@ package com.zerobase.reservation.service;
 
 import com.zerobase.reservation.exception.CustomException;
 import com.zerobase.reservation.exception.ErrorCode;
+import com.zerobase.reservation.model.entity.Customer;
 import com.zerobase.reservation.model.entity.Reservation;
 import com.zerobase.reservation.repository.ReservationRepository;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,19 @@ class CustomerServiceTest {
         }
 
 
+    }
+    @Test
+    void already_have_reservation(){
+        //given
+        var c=Customer.builder()
+                .id(1L)
+                .build();
+
+        reservationRepository.save(Reservation.builder()
+                .reservationAt(LocalDateTime.parse("11.11.11 11:11", DateTimeFormatter.ofPattern("yy.MM.dd HH:mm")))
+                        .customer(c)
+                .build());
+        //when
     }
 
     @Test
