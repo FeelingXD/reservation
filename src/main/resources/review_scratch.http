@@ -1,10 +1,10 @@
 ### 리뷰작성
-POST http://localhost:8080/review/write/1
+POST http://localhost:8080/review/write/2
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMTk3NjM4LCJleHAiOjE2ODEyODQwMzh9.ypLbUWePP_Kcuv-cUHMP1LkIEjo9WCQoyi_gsMUpmdg
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgyMjcyNTU1LCJleHAiOjE2ODIzNTg5NTV9.K4FtINxQ4PgYWEKiLN1vOUKF65eclFE6Wo28SJ528Fg
 
 {
-  "rate": "1.0",
-  "subject": "그럴듯한 제목",
-  "text": "그럴듯한 본문"
+  "rate": "3.0",
+  "subject": "꽤괜찮앗음",
+  "text": "ㅇㅇㅇ"
 }

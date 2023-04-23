@@ -25,10 +25,10 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iL
 
 ###make reservation
 POST http://localhost:8080/customer/reservation/make/1
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxMTk3NjM4LCJleHAiOjE2ODEyODQwMzh9.ypLbUWePP_Kcuv-cUHMP1LkIEjo9WCQoyi_gsMUpmdg
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoN1VHWFdURk11UGoxY1cycENPS1VnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgyMjcyNTU1LCJleHAiOjE2ODIzNTg5NTV9.K4FtINxQ4PgYWEKiLN1vOUKF65eclFE6Wo28SJ528Fg
 Content-Type: application/json
 Accept: text/plain;charset=UTF-8
 
 {
-  "reservateAt": "23.05.11 11:11"
+  "reservateAt": "23.04.24 11:11"
 }

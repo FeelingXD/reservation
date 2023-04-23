@@ -55,7 +55,7 @@ class ManagerRepositoryTest {
 
     @Test
     void findAllById() {
-        Manager m = managerRepository.findAllById(1L).get();
+        Manager m = managerRepository.findAllById(1L).orElseThrow(() -> new RuntimeException("test error"));
         for(Shop shop:m.getShop()){
             System.out.println(shop.toString());
         }
