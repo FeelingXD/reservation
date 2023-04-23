@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -40,7 +41,10 @@ public class KioskService {
     public Reservation checkReservation(Long kiosk_id, KioskInputForm form) { // 예약자 전화번호로 예약 승인하기
         var k = kioskRepository.findById(kiosk_id).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_KIOSK));
         var r = reservationRepository.findByCustomer_Phone(form.getCustomer_phone())
-                .stream().filter(reservation -> reservation.getReservationStatus().equals(ReservationStatus.RESERVATION_COMPLETE)).findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
+                .stream()
+                .filter(reservation -> reservation.getReservationStatus().equals(ReservationStatus.RESERVATION_COMPLETE))
+                .filter(reservation -> (reservation.getReservationAt().truncatedTo(ChronoUnit.DAYS)).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS)))
+                .findFirst().orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
         if (!r.getReservationAt().truncatedTo(ChronoUnit.DAYS).equals(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))){// 예약일자가 다른경우
             throw new CustomException(ErrorCode.RESERVATION_NOT_SAME_DAY);

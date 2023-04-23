@@ -17,7 +17,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     Set<Reservation> findByCustomer(Customer c);
 
     @EntityGraph(attributePaths = {"shop", "customer"})
-    Optional<Reservation> findByCustomer_Phone(String phone);
+    Set<Reservation> findByCustomer_Phone(String phone);
 
     @EntityGraph(attributePaths = {"shop"})
     List<Reservation> findByShop_Manager_Id(Long manager_id);
