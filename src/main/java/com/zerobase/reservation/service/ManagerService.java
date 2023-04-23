@@ -109,7 +109,7 @@ public class ManagerService {
         Manager m = managerRepository.findByIdAndEmail(user.getId(), user.getEmail()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         Reservation r = reservationRepository.findById(reservationId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESERVATION));
 
-        if (Objects.equals(r.getShop().getManager().getId(), user.getId()))
+        if (!Objects.equals(r.getShop().getManager().getId(), user.getId()))
             throw new CustomException(ErrorCode.ACCESS_NOT_ALLOWED);
         if (r.getReservationStatus() != ReservationStatus.WAITING_FOR_APPROVAL)
             throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_WAITING_APPROVAL);
