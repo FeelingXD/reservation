@@ -13,6 +13,12 @@ swagger 로 api명세를 작성하였습니다. 실행후 서버주소/swagger-u
 - Docker(DB 서버)
 - Mysql
 
+### 실행 환경
+
+-Duser.timezone="Asia/Seoul"
+
+실행시 서버시간을 서울로 설정 했습니다.
+
 ## 사용라이브러리📚
 
 - Springboot: 2.7.10v
