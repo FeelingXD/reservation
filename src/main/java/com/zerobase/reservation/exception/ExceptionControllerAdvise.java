@@ -15,7 +15,7 @@ public class ExceptionControllerAdvise {
 
   @ExceptionHandler(CustomException.class)
   public ResponseEntity<CustomException.CustomExceptionResponse> customExceptionResponseEntity(
-      CustomException e) {// Customer Exception heandler
+      CustomException e) {// Customer Exception handler
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(CustomException.CustomExceptionResponse.builder()
