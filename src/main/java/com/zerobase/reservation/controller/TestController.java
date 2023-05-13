@@ -10,8 +10,10 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @RequestMapping("/test/api/v1")
 public class TestController {
-    @GetMapping("/easteregg")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok().body("Looking back, what kind of person was I? I wonder how ever come to this .. i miss the better dayz.");
-    }
+
+  @GetMapping("/easteregg")
+  public ResponseEntity<String> test() {
+    return ResponseEntity.ok().body(
+        "Looking back, what kind of person was I? I wonder how ever come to this .. i miss the better dayz.");
+  }
 }

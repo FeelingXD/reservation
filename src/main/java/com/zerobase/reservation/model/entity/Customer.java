@@ -1,11 +1,21 @@
 package com.zerobase.reservation.model.entity;
 
 import com.zerobase.reservation.model.form.SignUpForm;
-import lombok.*;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Builder
@@ -14,27 +24,28 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(unique = true)
-    private String email;
-    private String password;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String name;
-    @Column(unique = true)
-    private String phone;
+  @Column(unique = true)
+  private String email;
+  private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Reservation> reservation = new ArrayList<>();
+  private String name;
+  @Column(unique = true)
+  private String phone;
 
-    public static Customer from(SignUpForm form) {
-        return Customer.builder()
-                .email(form.getEmail())
-                .password(form.getPassword())
-                .phone(form.getPhone())
-                .name(form.getName())
-                .build();
-    }
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
+  private List<Reservation> reservation = new ArrayList<>();
+
+  public static Customer from(SignUpForm form) {
+    return Customer.builder()
+        .email(form.getEmail())
+        .password(form.getPassword())
+        .phone(form.getPhone())
+        .name(form.getName())
+        .build();
+  }
 }

@@ -10,39 +10,40 @@ import com.zerobase.reservation.model.entity.constraint.ReservationStatus;
 import com.zerobase.reservation.model.form.ReviewInputForm;
 import com.zerobase.reservation.repository.ReservationRepository;
 import com.zerobase.reservation.repository.ReviewRepository;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
-    private final JwtAuthenticationProvider provider;
-    private final ReservationRepository reservationRepository;
-    private final ReviewRepository reviewRepository;
 
-    public Review writeReview(String token, Long reservation_id, ReviewInputForm form) { //리뷰 작성
+  private final JwtAuthenticationProvider provider;
+  private final ReservationRepository reservationRepository;
+  private final ReviewRepository reviewRepository;
 
-        UserVo user = provider.getUserVo(token);
-        Reservation r = new ArrayList<>(reservationRepository.findByIdAndCustomer_Email(reservation_id, user.getEmail())).get(0);
+  public Review writeReview(String token, Long reservation_id, ReviewInputForm form) { //리뷰 작성
 
-        if (r == null) {
-            throw new CustomException(ErrorCode.INVALID_REVIEW_WRITE);
-        } else if (r.getReservationStatus() != ReservationStatus.USE_COMPLETE) {
-            throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_USE_COMPLETE);
-        } else if (!(1.0 <= form.getRate() && form.getRate() <= 5.0)) {
-            throw new CustomException(ErrorCode.INVALID_FORM_RATE);
-        }
+    UserVo user = provider.getUserVo(token);
+    Reservation r = new ArrayList<>(
+        reservationRepository.findByIdAndCustomer_Email(reservation_id, user.getEmail())).get(0);
 
-        var review = Review.builder()
-                .subject(form.getSubject())
-                .text(form.getText())
-                .rate(form.getRate())
-                .reservation(r)
-                .shop(r.getShop())
-                .build();
-
-        return reviewRepository.save(review);
+    if (r == null) {
+      throw new CustomException(ErrorCode.INVALID_REVIEW_WRITE);
+    } else if (r.getReservationStatus() != ReservationStatus.USE_COMPLETE) {
+      throw new CustomException(ErrorCode.RESERVATION_STATUS_NOT_USE_COMPLETE);
+    } else if (!(1.0 <= form.getRate() && form.getRate() <= 5.0)) {
+      throw new CustomException(ErrorCode.INVALID_FORM_RATE);
     }
+
+    var review = Review.builder()
+        .subject(form.getSubject())
+        .text(form.getText())
+        .rate(form.getRate())
+        .reservation(r)
+        .shop(r.getShop())
+        .build();
+
+    return reviewRepository.save(review);
+  }
 }

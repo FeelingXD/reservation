@@ -1,14 +1,13 @@
 package com.zerobase.reservation.model.entity;
 
+import java.time.LocalDateTime;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -16,11 +15,11 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class BaseEntity {
 
-    @CreatedDate
-    private LocalDateTime registeredDt;
+  @CreatedDate
+  private LocalDateTime registeredDt;
 
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDt;
+  @LastModifiedDate
+  private LocalDateTime lastModifiedDt;
 
 
 }

@@ -8,14 +8,15 @@ import lombok.Getter;
 @Getter
 public class CustomValidationException extends RuntimeException {
 
-    public CustomValidationException(String message) {
-        super(message);
-    }
+  public CustomValidationException(String message) {
+    super(message);
+  }
 
-    @Data
-    @Builder
-    @AllArgsConstructor
-    public static class Response {
-        String message;
-    }
+  @Data
+  @Builder
+  @AllArgsConstructor
+  public static class Response {
+
+    String message;
+  }
 }

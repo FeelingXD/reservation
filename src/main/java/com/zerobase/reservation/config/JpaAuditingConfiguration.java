@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaAuditing
 @EnableJpaRepositories(basePackages = "com.zerobase.reservation.repository")
 public class JpaAuditingConfiguration {
+
 }
